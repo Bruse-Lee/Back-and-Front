@@ -14,6 +14,7 @@ namespace ContosoPizza.Database
         {
 
         }
+        // 集合所操作的实体类型 DbSet<T>
         public DbSet<Pizza> Pizzas { get; set; }
         public DbSet<User> Users { get; set; }
         public DbSet<Role> Roles { get; set; }
@@ -29,7 +30,7 @@ namespace ContosoPizza.Database
         //     modelBuilder.Entity<User>().HasData(
         //         new User
         //         {
-                    
+
         //             Username = "Root",
         //             Password = "123"
         //         },
