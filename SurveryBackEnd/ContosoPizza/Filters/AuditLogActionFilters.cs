@@ -52,8 +52,10 @@ namespace ContosoPizza.Filters
             var arguments = context.ActionArguments;
             //开始计时
             var stopwatch = Stopwatch.StartNew();
+
             var auditInfo = new AuditInfo
             {
+                // 前端登录获取Session  待更改↓
                 // UserInfo = _Session?.Id,
                 UserInfo = 1.ToString(),
                 ServiceName = type != null ? type.FullName : "",
