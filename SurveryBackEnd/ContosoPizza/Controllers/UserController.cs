@@ -70,6 +70,7 @@ namespace ContosoPizza.Controllers
 
         // POST action
         [HttpPost]
+        // 指定应用此属性的类或方法不需要授权。
         [AllowAnonymous]
         public dynamic Post(UserCreate users)
         {
