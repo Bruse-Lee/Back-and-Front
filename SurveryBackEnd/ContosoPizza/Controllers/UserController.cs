@@ -209,7 +209,7 @@ namespace ContosoPizza.Controllers
             {
                 return new
                 {
-                    Code = 1002,
+                    Code = 1000,
                     Data = "",
                     Msg = "Token authenticate fail"
                 };
@@ -221,7 +221,7 @@ namespace ContosoPizza.Controllers
 
             return new
             {
-                Code = 1000,
+                Code = 200,
                 Data = new { Token = token, refreshToken = refreshToken },
                 Msg = "Refresh Token Successful!"
             };
