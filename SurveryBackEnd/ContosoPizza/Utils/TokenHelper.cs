@@ -14,6 +14,7 @@ namespace ContosoPizza.Utils
         {
             var claims = new[]
             {
+                // 指定实体角色的声明的URI
                 new Claim(ClaimTypes.Name, username),
                 new Claim(ClaimTypes.Role, "admin"),
             };
