@@ -1,7 +1,22 @@
+import Layout from '../components/Layout'
 let routes = [
     {
         path: '/',
-        component: () => import('../components/Hi')  // 异步加载 (懒加载)
+        component: Layout, // 异步加载 (懒加载)
+        children: [
+            {
+                path: '/home',
+                component: () => import('../components/sidebar/home')
+            },
+            {
+                path: '/power',
+                component: () => import('../components/sidebar/power')
+            },
+            {
+                path:'/log',
+                component:()=>import('../components/sidebar/log')
+            }
+        ]
     },
     {
         path: '/Login',
@@ -10,7 +25,8 @@ let routes = [
     {
         path: '/Register',
         component: () => import('../components/Register')
-    }
+    },
+
 ]
 
 
