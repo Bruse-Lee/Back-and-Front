@@ -5,7 +5,7 @@
     </el-aside>
     <el-container>
       <el-header class="header">
-       <headbar></headbar>
+        <headbar></headbar>
       </el-header>
       <el-main>
         <router-view></router-view>
@@ -17,13 +17,11 @@
 
 <script>
 import Sidebar from "../components/sidebar/sidebar.vue";
-import Headbar from "../components/headNavbar/headBar.vue"
-// import home from './page/home'
+import Headbar from "../components/headNavbar/headBar.vue";
 export default {
   components: {
     Sidebar,
-    Headbar
-    // home
+    Headbar,
   },
   methods: {},
   data() {
@@ -40,16 +38,16 @@ body {
   padding: 0px;
 }
 .el-aside {
-  background-color: #545c64;
+  background-color: gray;
 }
 .el-header {
-  background-color: blue;
+  background-color: skyblue;
 }
 .el-main {
   background-color: white;
   min-height: calc(100vh - 120px);
 }
 .el-footer {
-  background-color: purple;
+  background-color: pink;
 }
 </style>
