@@ -10,7 +10,9 @@
       <el-main>
         <router-view></router-view>
       </el-main>
-      <el-footer>Footer</el-footer>
+      <el-footer>
+        Copyright © 2021 - 2021 9I Co. All Rights Reserved. BruseLee 版权所有
+      </el-footer>
     </el-container>
   </el-container>
 </template>
@@ -18,14 +20,14 @@
 <script>
 import Sidebar from "../components/sidebar/sidebar.vue";
 import Headbar from "../components/headNavbar/headBar.vue";
-import routes from '../router/routes'
+import routes from "../router/routes";
 export default {
   components: {
     Sidebar,
     Headbar,
   },
   methods: {
-     handleCollapse() {
+    handleCollapse() {
       this.isCollapse = !this.isCollapse;
     },
   },
@@ -59,5 +61,8 @@ body {
 }
 .el-footer {
   background-color: pink;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 </style>
