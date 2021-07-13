@@ -1,7 +1,7 @@
 <template>
   <el-container>
     <el-aside>
-      <sidebar></sidebar>
+      <sidebar :menus="menus"></sidebar>
     </el-aside>
     <el-container>
       <el-header>
