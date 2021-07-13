@@ -24,16 +24,17 @@ let routes = [
         name: "authController",
         children: [
             {
-                path: '/userController',
+                path: 'userController',
                 title: '用户管理',
+                name: 'userController',
                 children: [
                     {
-                        path: '/userList',
+                        path: 'userList',
                         title: "用户列表",
                         component: () => import('../components/authController/userController/userList')
                     },
                     {
-                        path: '/addUser',
+                        path: 'addUser',
                         title: "添加用户",
                         component: () => import('../components/authController/userController/addUser')
                     }
@@ -48,12 +49,12 @@ let routes = [
         name: 'personalCenter',
         children: [
             {
-                path: '/profile',
+                path: 'profile',
                 title: "个人信息",
                 component: () => import('../components/personalCenter/profile')
             },
             {
-                path: '/resetPwd',
+                path: 'resetPwd',
                 title: "密码更改",
                 component: () => import('../components/personalCenter/resetPwd')
             }

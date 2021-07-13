@@ -4,7 +4,7 @@
       <sidebar></sidebar>
     </el-aside>
     <el-container>
-      <el-header class="header">
+      <el-header>
         <headbar></headbar>
       </el-header>
       <el-main>
@@ -18,16 +18,26 @@
 <script>
 import Sidebar from "../components/sidebar/sidebar.vue";
 import Headbar from "../components/headNavbar/headBar.vue";
+import routes from '../router/routes'
 export default {
   components: {
     Sidebar,
     Headbar,
   },
-  methods: {},
+  methods: {
+     handleCollapse() {
+      this.isCollapse = !this.isCollapse;
+    },
+  },
   data() {
     return {
       isCollapse: false,
     };
+  },
+  computed: {
+    menus() {
+      return routes;
+    },
   },
 };
 </script>
