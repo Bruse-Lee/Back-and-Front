@@ -19,18 +19,18 @@ let routes = [
     },
     {
         path: '/authController',
-        component: Layout,
+        // component: Layout,
         title: "权限管理",
         name: "authController",
         children: [
             {
                 path: 'userController',
                 title: '用户管理',
-                component: Layout,
+                // component: Layout,
                 name: 'userController',
                 children: [
                     {
-                        path: 'userList',
+                        path: '/userList',
                         title: "用户列表",
                         component: () => import('../components/authController/userController/userList')
                     },
@@ -63,10 +63,12 @@ let routes = [
     },
     {
         path: '/Login',
+        title: "登錄",
         component: () => import('../components/Login')
     },
     {
         path: '/Register',
+        title: "注冊",
         component: () => import('../components/Register')
     },
 

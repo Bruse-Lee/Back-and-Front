@@ -9,19 +9,8 @@ Vue.config.productionTip = false
 
 Vue.use(ElementUI);
 
-// Vue.use(axios)
-
 Vue.prototype.$axios = axios;
 
-
-// 跨域问题
-
-
-// axios.get('http://localhost:5000/user')
-//   .then(function (res) {
-//     console.log(res);
-//     console.log(res.data.data);
-//   });
 
 new Vue({
   router,

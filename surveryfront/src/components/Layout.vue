@@ -30,6 +30,27 @@ export default {
     handleCollapse() {
       this.isCollapse = !this.isCollapse;
     },
+    resolve(arr, parentPath = "") {
+      let newArr = [];
+
+      arr.forEach((route) => {
+        let obj = Object.assign({}, route);
+
+        parentPath =
+          parentPath && parentPath.lastIndexOf("/") !== parentPath.length - 1
+            ? parentPath + "/"
+            : parentPath;
+
+        obj.path = parentPath + obj.path;
+
+        if (obj.children && obj.children.length > 0) {
+          obj.children = this.resolve(obj.children, obj.path);
+        }
+        newArr.push(obj);
+      });
+
+      return newArr;
+    },
   },
   data() {
     return {
