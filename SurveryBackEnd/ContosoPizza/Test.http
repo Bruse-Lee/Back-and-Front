@@ -19,8 +19,8 @@ POST http://localhost:5000/user
 Content-Type: application/json
 
 {
-    "Username":"测试用户8",
-    "Password": "188"
+    "Username":"李小龍",
+    "Password": "1988153"
 }
 
 ### Delete

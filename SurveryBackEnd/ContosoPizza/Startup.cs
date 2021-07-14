@@ -27,9 +27,11 @@ namespace ContosoPizza
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            //添加cors 服务 配置跨域处理   
+            //添加cors 服务 配置跨域处理
+            // AddCors:将跨源资源共享服务添加到指定的目录中
             services.AddCors(options =>
             {
+                // AddPolicy:Add a new Policy
                 options.AddPolicy("any", builder =>
                 {
                     builder.WithMethods("GET", "POST", "HEAD", "PUT", "DELETE", "OPTIONS")
@@ -83,7 +85,10 @@ namespace ContosoPizza
             app.UseRouting();
             // Token验证中间件
             app.UseAuthentication();
+
+            // 将CORS中间件添加到web应用程序管道中，以允许跨域请求
             app.UseCors("any");
+
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>

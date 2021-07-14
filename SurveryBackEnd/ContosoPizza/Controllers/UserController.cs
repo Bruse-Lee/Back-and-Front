@@ -7,7 +7,6 @@ using ContosoPizza.Utils;
 using ContosoPizza.Token;
 using Microsoft.Extensions.Configuration;
 using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Cors;
 
 namespace ContosoPizza.Controllers
 {
