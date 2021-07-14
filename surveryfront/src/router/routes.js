@@ -64,7 +64,7 @@ let routes = [
     {
         path: '/Login',
         title: "登錄",
-        component: () => import('../components/Login')
+        component: () => import('../components/Login/Login')
     },
     {
         path: '/Register',
