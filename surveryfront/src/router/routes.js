@@ -26,7 +26,7 @@ let routes = [
             {
                 path: 'userController',
                 title: '用户管理',
-                component:Layout,
+                component: Layout,
                 name: 'userController',
                 children: [
                     {

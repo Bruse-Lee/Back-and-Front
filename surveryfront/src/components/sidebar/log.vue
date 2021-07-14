@@ -42,7 +42,7 @@
     data() {
       return {
         tableData: [{
-          date: '2016-05-03',
+          "date": '2016-05-03',
           name: '王小虎',
           province: '上海',
           city: '普陀区',
