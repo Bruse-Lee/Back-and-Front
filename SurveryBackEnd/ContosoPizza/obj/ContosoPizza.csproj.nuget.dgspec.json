@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "E:\\MyGitProject\\Pizza-business-management-of-restfull-api\\ContosoPizza\\ContosoPizza.csproj": {}
+    "E:\\MyGithubStore\\Back-and-Front\\SurveryBackEnd\\ContosoPizza\\ContosoPizza.csproj": {}
   },
   "projects": {
-    "E:\\MyGitProject\\Pizza-business-management-of-restfull-api\\ContosoPizza\\ContosoPizza.csproj": {
+    "E:\\MyGithubStore\\Back-and-Front\\SurveryBackEnd\\ContosoPizza\\ContosoPizza.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "E:\\MyGitProject\\Pizza-business-management-of-restfull-api\\ContosoPizza\\ContosoPizza.csproj",
+        "projectUniqueName": "E:\\MyGithubStore\\Back-and-Front\\SurveryBackEnd\\ContosoPizza\\ContosoPizza.csproj",
         "projectName": "ContosoPizza",
-        "projectPath": "E:\\MyGitProject\\Pizza-business-management-of-restfull-api\\ContosoPizza\\ContosoPizza.csproj",
+        "projectPath": "E:\\MyGithubStore\\Back-and-Front\\SurveryBackEnd\\ContosoPizza\\ContosoPizza.csproj",
         "packagesPath": "C:\\Users\\Administrator\\.nuget\\packages\\",
-        "outputPath": "E:\\MyGitProject\\Pizza-business-management-of-restfull-api\\ContosoPizza\\obj\\",
+        "outputPath": "E:\\MyGithubStore\\Back-and-Front\\SurveryBackEnd\\ContosoPizza\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\Administrator\\AppData\\Roaming\\NuGet\\NuGet.Config",

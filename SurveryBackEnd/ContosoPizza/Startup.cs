@@ -1,25 +1,17 @@
-using System.Runtime.CompilerServices;
-using System.ComponentModel.DataAnnotations;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using ContosoPizza.Database;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.Logging;
-using Microsoft.OpenApi.Models;
 using ContosoPizza.Repository;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using ContosoPizza.Token;
 using System.Text;
 using Microsoft.IdentityModel.Tokens;
 using ContosoPizza.Filters;
+using Microsoft.AspNetCore.Builder;
 
 namespace ContosoPizza
 {
@@ -35,6 +27,17 @@ namespace ContosoPizza
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            //添加cors 服务 配置跨域处理   
+            services.AddCors(options =>
+            {
+                options.AddPolicy("any", builder =>
+                {
+                    builder.WithMethods("GET", "POST", "HEAD", "PUT", "DELETE", "OPTIONS")
+                    //.AllowCredentials()//指定处理cookie
+                .AllowAnyOrigin(); //允许任何来源的主机访问
+                });
+            });
+
             // 注入数据库上下文
             services.AddDbContext<ContosoPizzaDb>(o => o.UseSqlServer());
 
@@ -75,17 +78,33 @@ namespace ContosoPizza
             {
                 app.UseDeveloperExceptionPage();
 
-            }
+            };
 
             app.UseRouting();
             // Token验证中间件
             app.UseAuthentication();
+            app.UseCors("any");
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();
             });
+
+            //     app.UseSpa(spa =>
+            //   {
+            //       spa.Options.SourcePath = "ClientApp";
+
+            //       if (env.IsDevelopment())
+            //       {
+            //           //spa.UseReactDevelopmentServer(npmScript: "start");
+            //           //spa.UseVueCliServer(npmScript: "start");
+            //           spa.UseProxyToSpaDevelopmentServer("http://localhost:8080");
+            //       }
+            //   });
+
         }
+
+
     }
 }
