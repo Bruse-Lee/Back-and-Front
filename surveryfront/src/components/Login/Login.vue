@@ -34,7 +34,6 @@
 
 
 <script>
-// import qs from "qs";
 export default {
   name: "Login",
   data() {
@@ -46,9 +45,7 @@ export default {
       },
     };
   },
-  components: {
-    // Loging
-  },
+  components: {},
   methods: {
     // 登录逻辑
     login() {
@@ -62,17 +59,17 @@ export default {
     // 登录请求
     toLogin() {
       // let _this = this;
-        let data = {
-          username: this.loginForm.username,
-          password: this.loginForm.password,
-        };
+      let data = {
+        username: this.loginForm.username,
+        password: this.loginForm.password,
+      };
       console.log(data);
       // 设置响应拦截器
       this.$axios.interceptors.response.use((response) => {
         // 拦截器已经拦截获取了响应数据里的data,对象中的data
         return response.data;
       }),
-        err => {
+        (err) => {
           console.log(err);
         };
 
@@ -86,19 +83,6 @@ export default {
           alert("用户名或密码错误,请重新尝试！");
         }
       });
-      // this.$axios({
-      //   methods: "POST",
-      //   headers: { "Content-Type": "application/x-www-form-urlencoded" },
-      //   url: "/user/api/login",
-      //   data: qs.stringify(data),
-      // }).then((res) => {
-      //   console.log(res.data);
-      //   if(res.data.code === 200){
-      //     this.$router.push('/home')
-      //   }else{
-      //     this.$router.push('/Login')
-      //   }
-      // });
     },
   },
 };
