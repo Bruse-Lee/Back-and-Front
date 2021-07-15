@@ -5,7 +5,9 @@
     </el-aside>
     <el-container>
       <el-header>
-        <headbar></headbar>
+        <i class="el-icon-caret-bottom"></i>
+        <!-- <headbar>
+        </headbar> -->
       </el-header>
       <el-main>
         <router-view></router-view>
@@ -19,12 +21,17 @@
 
 <script>
 import Sidebar from "../components/sidebar/sidebar.vue";
-import Headbar from "../components/headNavbar/headBar.vue";
+// import Headbar from "../components/headNavbar/headBar.vue";
 import routes from "../router/routes";
 export default {
   components: {
     Sidebar,
-    Headbar,
+    // Headbar,
+  },
+  data() {
+    return {
+      isCollapse: false,
+    };
   },
   methods: {
     handleCollapse() {
@@ -35,7 +42,6 @@ export default {
 
       arr.forEach((route) => {
         let obj = Object.assign({}, route);
-
         parentPath =
           parentPath && parentPath.lastIndexOf("/") !== parentPath.length - 1
             ? parentPath + "/"
@@ -46,20 +52,16 @@ export default {
         if (obj.children && obj.children.length > 0) {
           obj.children = this.resolve(obj.children, obj.path);
         }
-        newArr.push(obj);
+        // console.log(obj.path);
+        newArr.push(obj)
       });
-
       return newArr;
     },
   },
-  data() {
-    return {
-      isCollapse: false,
-    };
-  },
   computed: {
     menus() {
-      return routes;
+      let newArr = this.resolve(routes);
+      return newArr;
     },
   },
 };
@@ -85,5 +87,8 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
+}
+.el-icon-caret-bottom {
+  font-size: 40px;
 }
 </style>

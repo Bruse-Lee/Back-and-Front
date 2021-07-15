@@ -6,6 +6,8 @@
     text-color="#fff"
     active-text-color="#ffd04b"
     router
+    collapse
+    unique-opened
   >
     <sidebarItem :menus="menus"></sidebarItem>
   </el-menu>
@@ -25,3 +27,10 @@ export default {
   },
 };
 </script>
+
+<style scoped>
+.el-menu{
+  height: 100vh;
+  text-align: center;
+}
+</style>

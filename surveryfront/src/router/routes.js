@@ -6,12 +6,12 @@ let routes = [
         title: "目录",
         children: [
             {
-                path: '/home',
+                path: 'home',
                 title: "首页",
                 component: () => import('../components/sidebar/home')
             },
             {
-                path: '/log',
+                path: 'log',
                 title: "日志中心",
                 component: () => import('../components/sidebar/log')
             },
@@ -19,7 +19,7 @@ let routes = [
     },
     {
         path: '/authController',
-        // component: Layout,
+        component: Layout,
         title: "权限管理",
         name: "authController",
         children: [
@@ -30,7 +30,7 @@ let routes = [
                 name: 'userController',
                 children: [
                     {
-                        path: '/userList',
+                        path: 'userList',
                         title: "用户列表",
                         component: () => import('../components/authController/userController/userList')
                     },

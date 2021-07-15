@@ -36,7 +36,7 @@
 
 
 <script>
-// import Loging from './Loading.vue'
+// import qs from 'qs'
 export default {
   name: "Login",
   data() {
@@ -64,20 +64,27 @@ export default {
     // 登录请求
     toLogin() {
       let _this = this;
-      this.$axios.post('/user/login',{
+      // this.$axios
+      //   .post("/user/api/login", {
+      //     headers: { "Content-Type": "application/x-www-form-urlencoded" },
+      //     data: _this.loginForm,
+      //   })
+      //   .then((res) => {
+      //     console.log(res.data);
+      //   });
+      this.$axios({
+        methods: "POST",
         headers: { "Content-Type": "application/x-www-form-urlencoded" },
+        url: "/user/api/login",
         data: _this.loginForm,
       }).then((res) => {
         console.log(res.data);
+        if(res.data.code === 200){
+          this.$router.push('/home')
+        }else{
+          this.$router.push('/Login')
+        }
       });
-      // this.$axios({
-      //   methods: 'POST',
-      //   headers: { "Content-Type": "application/x-www-form-urlencoded" },
-      //   url: "/user/login",
-      //   data: _this.loginForm,
-      // }).then((res) => {
-      //   console.log(res.data);
-      // });
     },
   },
 };
