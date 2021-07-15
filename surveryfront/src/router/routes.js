@@ -3,8 +3,15 @@ let routes = [
     {
         path: '/',
         component: Layout, // 异步加载 (懒加载)
-        title: "目录",
+        title: "根目录",
+        redirect: { path: '/dashboard' },
         children: [
+            {
+                path: 'dashboard',
+                name: 'dashboard',
+                title: "仪表盘",
+                component: () => import('../components/Dashboard/dashboard')
+            },
             {
                 path: 'home',
                 title: "首页",
@@ -15,6 +22,7 @@ let routes = [
                 title: "日志中心",
                 component: () => import('../components/sidebar/log')
             },
+
         ],
     },
     {

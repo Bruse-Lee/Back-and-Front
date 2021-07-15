@@ -88,11 +88,10 @@ export default {
 <style scoped>
 body {
   margin: 0px;
-  /* padding: 0px; */
 }
 .el-aside {
   width: auto;
-  /* background-color: gray; */
+  border-right: none;
 }
 .el-header {
   display: flex;
@@ -112,7 +111,7 @@ body {
 .el-icon-caret-bottom {
   font-size: 40px;
 }
-.icon-Turn{
+.icon-Turn {
   transform: rotate(90deg);
 }
 </style>
