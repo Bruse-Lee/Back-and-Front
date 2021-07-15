@@ -19,11 +19,11 @@ export default {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 
-  margin: 0%;
+  /* margin: 0%;
   padding: 0%;
   margin-left: 0px;
   margin-top: 0px;
   margin-right: 0px;
-  margin-bottom: 0px;
+  margin-bottom: 0px; */
 }
 </style>

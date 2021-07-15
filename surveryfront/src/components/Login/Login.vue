@@ -18,7 +18,6 @@
           'log-input' + (loginForm.username == '' ? ' log-input-empty' : '')
         "
         v-model="loginForm.username"
-        id="username"
       /><input
         type="password"
         placeholder="Password"
@@ -26,7 +25,6 @@
           'log-input' + (loginForm.password == '' ? ' log-input-empty' : '')
         "
         v-model="loginForm.password"
-        id="password"
       />
       <a href="javascript:;" class="log-btn" @click="login">Login</a>
     </div>
@@ -36,7 +34,7 @@
 
 
 <script>
-// import qs from 'qs'
+// import qs from "qs";
 export default {
   name: "Login",
   data() {
@@ -63,28 +61,34 @@ export default {
 
     // 登录请求
     toLogin() {
-      let _this = this;
-      // this.$axios
-      //   .post("/user/api/login", {
-      //     headers: { "Content-Type": "application/x-www-form-urlencoded" },
-      //     data: _this.loginForm,
-      //   })
-      //   .then((res) => {
-      //     console.log(res.data);
-      //   });
-      this.$axios({
-        methods: "POST",
-        headers: { "Content-Type": "application/x-www-form-urlencoded" },
-        url: "/user/api/login",
-        data: _this.loginForm,
-      }).then((res) => {
+      // let _this = this;
+      let data = {
+        username: this.loginForm.username,
+        password: this.loginForm.password,
+      };
+      console.log(data);
+      this.$axios.post("/user/api/login", data).then((res) => {
         console.log(res.data);
-        if(res.data.code === 200){
-          this.$router.push('/home')
+        if (res.data.code === 200) {
+          alert("登陆成功！");
+          this.$router.push("/");
         }else{
-          this.$router.push('/Login')
+          alert("用户名或密码错误,请重新尝试！")
         }
       });
+      // this.$axios({
+      //   methods: "POST",
+      //   headers: { "Content-Type": "application/x-www-form-urlencoded" },
+      //   url: "/user/api/login",
+      //   data: qs.stringify(data),
+      // }).then((res) => {
+      //   console.log(res.data);
+      //   if(res.data.code === 200){
+      //     this.$router.push('/home')
+      //   }else{
+      //     this.$router.push('/Login')
+      //   }
+      // });
     },
   },
 };

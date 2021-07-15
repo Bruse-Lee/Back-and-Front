@@ -87,7 +87,7 @@ export default {
 
 <style scoped>
 body {
-  margin: 0px;
+  margin: 0;
 }
 .el-aside {
   width: auto;
