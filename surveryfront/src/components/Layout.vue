@@ -1,22 +1,30 @@
 <template>
-  <el-container>
-    <el-aside>
-      <sidebar :menus="menus"></sidebar>
-    </el-aside>
+  <div>
     <el-container>
-      <el-header>
-        <i class="el-icon-caret-bottom"></i>
-        <!-- <headbar>
+      <el-aside :style="asideStyle">
+        <sidebar :menus="menus"></sidebar>
+      </el-aside>
+      <el-container>
+        <el-header>
+          <a href="#"
+            ><i
+              class="el-icon-caret-bottom"
+              :class="iconTurn"
+              @click="handleCollapse"
+            ></i
+          ></a>
+          <!-- <headbar>
         </headbar> -->
-      </el-header>
-      <el-main>
-        <router-view></router-view>
-      </el-main>
-      <el-footer>
-        Copyright © 2021 - 2021 9I Co. All Rights Reserved. BruseLee 版权所有
-      </el-footer>
+        </el-header>
+        <el-main>
+          <router-view></router-view>
+        </el-main>
+        <el-footer>
+          Copyright © 2021 - 2021 9I Co. All Rights Reserved. BruseLee 版权所有
+        </el-footer>
+      </el-container>
     </el-container>
-  </el-container>
+  </div>
 </template>
 
 <script>
@@ -53,7 +61,7 @@ export default {
           obj.children = this.resolve(obj.children, obj.path);
         }
         // console.log(obj.path);
-        newArr.push(obj)
+        newArr.push(obj);
       });
       return newArr;
     },
@@ -63,6 +71,16 @@ export default {
       let newArr = this.resolve(routes);
       return newArr;
     },
+    asideStyle() {
+      return {
+        width: this.isCollapse ? "auto" : "200px",
+      };
+    },
+    iconTurn() {
+      return {
+        "icon-Turn": this.isCollapse ? true : "",
+      };
+    },
   },
 };
 </script>
@@ -70,12 +88,15 @@ export default {
 <style scoped>
 body {
   margin: 0px;
-  padding: 0px;
+  /* padding: 0px; */
 }
 .el-aside {
-  background-color: gray;
+  width: auto;
+  /* background-color: gray; */
 }
 .el-header {
+  display: flex;
+  align-items: center;
   background-color: skyblue;
 }
 .el-main {
@@ -90,5 +111,8 @@ body {
 }
 .el-icon-caret-bottom {
   font-size: 40px;
+}
+.icon-Turn{
+  transform: rotate(90deg);
 }
 </style>

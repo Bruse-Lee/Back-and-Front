@@ -6,7 +6,7 @@
     text-color="#fff"
     active-text-color="#ffd04b"
     router
-    collapse
+    :collapse="collapse"
     unique-opened
   >
     <sidebarItem :menus="menus"></sidebarItem>
@@ -14,22 +14,26 @@
 </template>
 
 <script>
-import sidebarItem from '../sidebar/sidebarItem.vue'
+import sidebarItem from "../sidebar/sidebarItem.vue";
 export default {
   components: {
-    sidebarItem
+    sidebarItem,
   },
   props: {
     menus: {
       type: Array,
       require: true,
     },
+    collapse: {
+      type: Boolean,
+      default: false,
+    },
   },
 };
 </script>
 
 <style scoped>
-.el-menu{
+.el-menu {
   height: 100vh;
   text-align: center;
 }
