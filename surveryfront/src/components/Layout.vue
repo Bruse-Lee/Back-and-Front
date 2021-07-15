@@ -8,7 +8,7 @@
         <el-header>
           <a href="#"
             ><i
-              class="el-icon-caret-bottom"
+              class="bx bx-menu"
               :class="iconTurn"
               @click="handleCollapse"
             ></i
@@ -108,8 +108,11 @@ body {
   align-items: center;
   justify-content: center;
 }
-.el-icon-caret-bottom {
-  font-size: 40px;
+.bx-menu {
+  color: #11101d;
+  font-size: 35px;
+  margin: 0 5px;
+  cursor: pointer;
 }
 .icon-Turn {
   transform: rotate(90deg);

@@ -62,18 +62,28 @@ export default {
     // 登录请求
     toLogin() {
       // let _this = this;
-      let data = {
-        username: this.loginForm.username,
-        password: this.loginForm.password,
-      };
+        let data = {
+          username: this.loginForm.username,
+          password: this.loginForm.password,
+        };
       console.log(data);
-      this.$axios.post("/user/api/login", data).then((res) => {
-        console.log(res.data);
-        if (res.data.code === 200) {
+      // 设置响应拦截器
+      this.$axios.interceptors.response.use((response) => {
+        // 拦截器已经拦截获取了响应数据里的data,对象中的data
+        return response.data;
+      }),
+        err => {
+          console.log(err);
+        };
+
+      this.$axios.post("/api/login", data).then((res) => {
+        //所以此处打印的是用户状态信息
+        console.log(res);
+        if (res.code === 200) {
           alert("登陆成功！");
           this.$router.push("/");
-        }else{
-          alert("用户名或密码错误,请重新尝试！")
+        } else {
+          alert("用户名或密码错误,请重新尝试！");
         }
       });
       // this.$axios({

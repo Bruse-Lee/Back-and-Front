@@ -6,7 +6,7 @@
         :index="menu.path"
       >
         <template slot="title">
-          <i class="el-icon-location"></i>
+          <i class="bx bxl-c-plus-plus"></i>
           <span>{{ menu.title }}</span>
         </template>
 
@@ -31,3 +31,7 @@ export default {
   },
 };
 </script>
+
+<style scoped>
+@import "https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css";
+</style>
