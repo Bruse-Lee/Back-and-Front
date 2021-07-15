@@ -1,11 +1,9 @@
 import Layout from '../components/Layout'
-
 let routes = [
     {
         path: '/',
         component: Layout, // 异步加载 (懒加载)
         title: "根目录",
-        name: '/',
         redirect: { path: '/dashboard' },
         children: [
             {
@@ -73,18 +71,16 @@ let routes = [
     },
     {
         path: '/Login',
-        name: 'Login',
         title: "登錄",
         component: () => import('../components/Login/Login')
     },
-    // {
-    //     path: '/Register',
-    //     title: "注冊",
-    //     component: () => import('../components/Register')
-    // },
+    {
+        path: '/Register',
+        title: "注冊",
+        component: () => import('../components/Register')
+    },
 
-];
-
+]
 
 
 export default routes

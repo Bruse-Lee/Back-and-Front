@@ -1,4 +1,5 @@
 <template>
+<!-- <el-scrollbar> -->
   <el-menu
     default-active="2"
     class="el-menu-vertical-demo"
@@ -11,6 +12,7 @@
   >
     <sidebarItem :menus="menus"></sidebarItem>
   </el-menu>
+<!-- </el-scrollbar> -->
 </template>
 
 <script>
@@ -36,5 +38,6 @@ export default {
 .el-menu {
   height: 100vh;
   text-align: center;
+  border-right: none;
 }
 </style>

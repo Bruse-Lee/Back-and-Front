@@ -85,14 +85,14 @@ export default {
 };
 </script>
 
-<style scoped>
+<style>
 body {
   margin: 0;
 }
-.el-aside {
+/* .el-aside {
   width: auto;
   border-right: none;
-}
+} */
 .el-header {
   display: flex;
   align-items: center;
