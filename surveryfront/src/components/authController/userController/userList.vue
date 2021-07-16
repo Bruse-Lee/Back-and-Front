@@ -1,12 +1,17 @@
 <template>
-  <div class="column">
+  <div>
     <el-table :data="tableData" max-height="calc(100vh - 120px)" border>
-      <el-table-column fixed prop="id" label="ID" width="249"></el-table-column>
+      <el-table-column
+        fixed
+        prop="id"
+        label="ID"
+        width="100"
+        id="tableData.id"
+      ></el-table-column>
       <el-table-column
         prop="username"
         label="姓名"
         width="350"
-        class="column"
       ></el-table-column>
       <el-table-column
         prop="password"
@@ -23,15 +28,28 @@
         label="更新时间"
         width="300"
       ></el-table-column>
+      <el-table-column label="操作">
+        <template slot-scope="scope">
+          <el-button size="mini" @click="handleEdit(scope.$index, scope.row)"
+            >编辑</el-button
+          >
+          <el-button
+            size="mini"
+            type="danger"
+            @click="handleDelete(scope.row.id)"
+            >删除</el-button
+          >
+        </template>
+      </el-table-column>
     </el-table>
   </div>
 </template>
 
 <script>
-import request from "../../../utils/request";
+import { GetList, deleteById } from "../../../api/user";
 export default {
   created: function () {
-    request.get("http://localhost:5000/user").then((res) => {
+    GetList().then((res) => {
       this.tableData = res.data.data;
       console.log(res.data.data);
     });
@@ -41,13 +59,36 @@ export default {
       tableData: null,
     };
   },
+  // 注入reload方法
+  inject: ["reload"],
+  methods: {
+    handleEdit(index, row) {
+      console.log(index, row);
+    },
+    async handleDelete(id) {
+      const confirmResult = await this.$confirm(
+        "此操作将永久删除该用户,是否继续？",
+        "提示",
+        {
+          confirmButtonText: "确定",
+          cancelButtonText: "取消",
+          type: "warning",
+        }
+      ).catch((err) => err);
+      if (confirmResult === "confirm") {
+        this.$message.success("删除成功!");
+        // this.tableData[index].remove()
+        deleteById(id);
+        this.reload()
+      } else {
+        this.$message.info("删除失败!");
+      }
+      console.log(id);
+    },
+  },
 };
 </script>
 <style>
-.column{
-  text-align: center;
-  vertical-align: middle;
-}
 </style>
 
 
