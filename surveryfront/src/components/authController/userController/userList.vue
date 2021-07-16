@@ -6,7 +6,6 @@
         prop="id"
         label="ID"
         width="100"
-        id="tableData.id"
       ></el-table-column>
       <el-table-column
         prop="username"
@@ -80,9 +79,9 @@ export default {
         this.$message.success("删除成功!");
         this.tableData.splice(index, 1);
         deleteById(id);
-        // this.reload()
+        // this.reload()  // 调用的刷新页面方法
       } else {
-        this.$message.info("删除失败!");
+        this.$message.info("取消删除!");
       }
       console.log(id);
     },
