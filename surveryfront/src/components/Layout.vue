@@ -2,16 +2,13 @@
   <div>
     <el-container>
       <el-aside :style="asideStyle">
-        <sidebar :menus="menus"></sidebar>
+        <sidebar :menus="menus">
+        </sidebar>   
       </el-aside>
       <el-container>
         <el-header>
           <a href="#"
-            ><i
-              class="bx bx-menu"
-              :class="iconTurn"
-              @click="handleCollapse"
-            ></i
+            ><i class="bx bx-menu" :class="iconTurn" @click="handleCollapse"></i
           ></a>
           <!-- <headbar>
         </headbar> -->
@@ -96,14 +93,14 @@ body {
 .el-header {
   display: flex;
   align-items: center;
-  background-color: skyblue;
+  background-color: white;
 }
 .el-main {
   background-color: white;
   min-height: calc(100vh - 120px);
 }
 .el-footer {
-  background-color: pink;
+  background-color: #f5f6fa;
   display: flex;
   align-items: center;
   justify-content: center;

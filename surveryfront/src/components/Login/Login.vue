@@ -1,34 +1,36 @@
 <template>
-  <div class="login" id="login" ref="loginForm">
-    <a href="javascript:;" class="log-close"><i class="icons close"></i></a>
-    <div class="log-bg">
-      <div class="log-cloud cloud1"></div>
-      <div class="log-cloud cloud2"></div>
-      <div class="log-cloud cloud3"></div>
-      <div class="log-cloud cloud4"></div>
+  <div class="background">
+    <div class="login" id="login" ref="loginForm">
+      <a href="javascript:;" class="log-close"><i class="icons close"></i></a>
+      <div class="log-bg">
+        <div class="log-cloud cloud1"></div>
+        <div class="log-cloud cloud2"></div>
+        <div class="log-cloud cloud3"></div>
+        <div class="log-cloud cloud4"></div>
 
-      <div class="log-logo">Welcome!</div>
-      <div class="log-text">@Raccoon</div>
-    </div>
-    <div class="log-username">
-      <input
-        type="text"
-        placeholder="Username"
-        :class="
-          'log-input' + (loginForm.username == '' ? ' log-input-empty' : '')
-        "
-        v-model="loginForm.username"
-      /><input
-        type="password"
-        placeholder="Password"
-        :class="
-          'log-input' + (loginForm.password == '' ? ' log-input-empty' : '')
-        "
-        v-model="loginForm.password"
-      />
-      <a href="javascript:;" class="log-btn" @click="login('loginForm')"
-        >Login</a
-      >
+        <div class="log-logo">Welcome!</div>
+        <div class="log-text">@Raccoon</div>
+      </div>
+      <div class="log-username">
+        <input
+          type="text"
+          placeholder="Username"
+          :class="
+            'log-input' + (loginForm.username == '' ? ' log-input-empty' : '')
+          "
+          v-model="loginForm.username"
+        /><input
+          type="password"
+          placeholder="Password"
+          :class="
+            'log-input' + (loginForm.password == '' ? ' log-input-empty' : '')
+          "
+          v-model="loginForm.password"
+        />
+        <a href="javascript:;" class="log-btn" @click="login('loginForm')"
+          >Login</a
+        >
+      </div>
     </div>
   </div>
   <!-- <Loading v-if="isLoging" marginTop="-30%"></Loading> -->
@@ -97,6 +99,11 @@ export default {
 </script>
 
 <style scoped>
+.background {
+  height: 100%;
+  width: 100%;
+  background-image: url("../../imgs/keyboard.png");
+}
 .login {
   position: fixed;
   overflow: hidden;

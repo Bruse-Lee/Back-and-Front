@@ -1,66 +1,38 @@
 <template>
-  <div>
-    <el-main>
-      <el-table :data="tableData" style="width: 100%" max-height="250">
-        <el-table-column fixed prop="id" label="ID" width="150">
-        </el-table-column>
-        <el-table-column prop="username" label="姓名" width="120">
-        </el-table-column>
-        <el-table-column prop="password" label="密码" width="120">
-        </el-table-column>
-        <el-table-column prop="createTime" label="创建时间" width="300">
-        </el-table-column>
-        <el-table-column prop="updateTime" label="更新时间" width="120">
-        </el-table-column>
-
-        <el-table-column fixed="right" label="操作" width="120">
-          <template slot-scope="scope">
-            <el-button
-              @click.native.prevent="deleteRow(scope.$index, tableData)"
-              type="text"
-              size="small"
-            >
-              移除
-            </el-button>
-          </template>
-        </el-table-column>
-      </el-table>
-    </el-main>
-    <!-- <div >
-      <el-table :data="tableData" style="width: 100%" max-height="250">
-          <el-table-column fixed prop="date" label="日期" width="150">
-          </el-table-column>
-          <el-table-column prop="name" label="姓名" width="120">
-          </el-table-column>
-          <el-table-column prop="province" label="省份" width="120">
-          </el-table-column>
-          <el-table-column prop="city" label="市区" width="120">
-          </el-table-column>
-          <el-table-column prop="address" label="地址" width="300">
-          </el-table-column>
-          <el-table-column prop="zip" label="邮编" width="120">
-          </el-table-column>
-          <el-table-column fixed="right" label="操作" width="120">
-            <template slot-scope="scope">
-              <el-button
-                @click.native.prevent="deleteRow(scope.$index, tableData)"
-                type="text"
-                size="small"
-              >
-                移除
-              </el-button>
-            </template>
-          </el-table-column>
-        </el-table>
-    </div> -->
+  <div class="column">
+    <el-table :data="tableData" max-height="calc(100vh - 120px)" border>
+      <el-table-column fixed prop="id" label="ID" width="249"></el-table-column>
+      <el-table-column
+        prop="username"
+        label="姓名"
+        width="350"
+        class="column"
+      ></el-table-column>
+      <el-table-column
+        prop="password"
+        label="密码"
+        width="390"
+      ></el-table-column>
+      <el-table-column
+        prop="createTime"
+        label="创建时间"
+        width="390"
+      ></el-table-column>
+      <el-table-column
+        prop="updateTime"
+        label="更新时间"
+        width="300"
+      ></el-table-column>
+    </el-table>
   </div>
 </template>
 
 <script>
+import request from "../../../utils/request";
 export default {
   created: function () {
-    this.$axios.get("http://localhost:5000/user").then((res) => {
-      this.tableData = res.data.data
+    request.get("http://localhost:5000/user").then((res) => {
+      this.tableData = res.data.data;
       console.log(res.data.data);
     });
   },
@@ -69,8 +41,13 @@ export default {
       tableData: null,
     };
   },
-
 };
 </script>
+<style>
+.column{
+  text-align: center;
+  vertical-align: middle;
+}
+</style>
 
 

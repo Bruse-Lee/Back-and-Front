@@ -1,4 +1,5 @@
 import Layout from '../components/Layout'
+
 let routes = [
     {
         path: '/',
@@ -11,10 +12,10 @@ let routes = [
         children: [
             {
                 path: 'dashboard',
-                // name: 'dashboard',
+                name: 'dashboard',
                 meta: {
-                    title: "仪表盘",
-                    icon: 'bx bx-category'
+                    icon: 'bx bx-dialpad',
+                    title: "仪表盘"
                 },
                 component: () => import('../components/Dashboard/dashboard')
             },
@@ -23,7 +24,7 @@ let routes = [
                 name: 'home',
                 meta: {
                     title: "首页",
-                    icon: 'bx bx-category'
+                    icon: 'bx bxl-spring-boot'
                 },
                 component: () => import('../components/sidebar/home')
             },
@@ -32,7 +33,7 @@ let routes = [
                 name: 'log',
                 meta: {
                     title: "日志中心",
-                    icon: 'bx bx-category'
+                    icon: 'bx bxl-blogger'
                 },
                 component: () => import('../components/sidebar/log')
             },
@@ -40,44 +41,44 @@ let routes = [
         ],
     },
     {
-        path: '/authController',
+        // path: '/authController',
+        // component: Layout,
+        // name: "authController",
+        // meta: {
+        //     title: "权限管理",
+        //     icon: 'bx bxs-user'
+        // },
+        // children: [
+        //     {
+        path: '/userController',
+        name: 'userController',
         component: Layout,
         meta: {
-            title: "权限管理",
-            icon: 'bx bx-category'
+            title: "用户管理",
+            icon: 'bx bx-confused'
         },
-        name: "authController",
         children: [
             {
-                path: 'userController',
-                name: 'userController',
+                path: 'userList',
+                name: 'userList',
                 meta: {
-                    title: "用户管理",
-                    icon: 'bx bx-category'
+                    title: "用户列表",
+                    icon: 'bx bxs-user-detail'
                 },
-                // component: Layout,
-                children: [
-                    {
-                        path: 'userList',
-                        name: 'userList',
-                        meta: {
-                            title: "用户列表",
-                            icon: 'bx bx-category'
-                        },
-                        component: () => import('../components/authController/userController/userList')
-                    },
-                    {
-                        path: 'addUser',
-                        name: 'addUser',
-                        meta: {
-                            title: "添加用户",
-                            icon: 'bx bx-category'
-                        },
-                        component: () => import('../components/authController/userController/addUser')
-                    }
-                ]
+                component: () => import('../components/authController/userController/userList')
+            },
+            {
+                path: 'addUser',
+                name: 'addUser',
+                meta: {
+                    title: "添加用户",
+                    icon: 'bx bxs-user-plus'
+                },
+                component: () => import('../components/authController/userController/addUser')
             }
-        ],
+        ]
+        // }
+        // ],
     },
     {
         path: '/personalCenter',
@@ -85,7 +86,7 @@ let routes = [
         component: Layout,
         meta: {
             title: "个人中心",
-            icon: 'bx bx-category'
+            icon: 'bx bxs-user-circle'
         },
         children: [
             {
@@ -93,7 +94,7 @@ let routes = [
                 name: 'profile',
                 meta: {
                     title: "个人信息",
-                    icon: 'bx bx-category'
+                    icon: 'bx bx-user-circle'
                 },
                 component: () => import('../components/personalCenter/profile')
             },
@@ -102,22 +103,25 @@ let routes = [
                 name: 'resetPwd',
                 meta: {
                     title: "密码更改",
-                    icon: 'bx bx-category'
+                    icon: 'bx bxl-tux'
                 },
                 component: () => import('../components/personalCenter/resetPwd')
-            }
+            },
         ]
     },
     {
         path: '/Login',
         title: "登錄",
+        meta:{
+            hidden:true
+        },
         component: () => import('../components/Login/Login')
     },
-    {
-        path: '/Register',
-        title: "注冊",
-        component: () => import('../components/Register')
-    },
+    // {
+    //     path: '/Register',
+    //     title: "注冊",
+    //     component: () => import('../components/Register')
+    // },
 
 ]
 
