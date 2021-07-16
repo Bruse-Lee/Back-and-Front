@@ -6,15 +6,16 @@
         :index="menu.path"
       >
         <template slot="title">
-          <i class="bx bxl-c-plus-plus"></i>
-          <span>{{ menu.title }}</span>
+          <i :class="menu.meta.icon"></i>
+          <span>{{ menu.meta.title }}</span>
         </template>
 
         <sidebar-item :menus="menu.children"></sidebar-item>
       </el-submenu>
 
       <el-menu-item v-else :index="menu.path">
-        <span slot="title">{{ menu.title }}</span>
+        <i :class="menu.meta.icon"></i>
+        <span slot="title">{{ menu.meta.title }}</span>
       </el-menu-item>
     </div>
   </div>

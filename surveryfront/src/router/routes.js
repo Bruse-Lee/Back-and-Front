@@ -3,23 +3,37 @@ let routes = [
     {
         path: '/',
         component: Layout, // 异步加载 (懒加载)
-        title: "根目录",
         redirect: { path: '/dashboard' },
+        meta: {
+            title: "根目录",
+            icon: 'bx bx-category'
+        },
         children: [
             {
                 path: 'dashboard',
-                name: 'dashboard',
-                title: "仪表盘",
+                // name: 'dashboard',
+                meta: {
+                    title: "仪表盘",
+                    icon: 'bx bx-category'
+                },
                 component: () => import('../components/Dashboard/dashboard')
             },
             {
                 path: 'home',
-                title: "首页",
+                name: 'home',
+                meta: {
+                    title: "首页",
+                    icon: 'bx bx-category'
+                },
                 component: () => import('../components/sidebar/home')
             },
             {
                 path: 'log',
-                title: "日志中心",
+                name: 'log',
+                meta: {
+                    title: "日志中心",
+                    icon: 'bx bx-category'
+                },
                 component: () => import('../components/sidebar/log')
             },
 
@@ -28,23 +42,37 @@ let routes = [
     {
         path: '/authController',
         component: Layout,
-        title: "权限管理",
+        meta: {
+            title: "权限管理",
+            icon: 'bx bx-category'
+        },
         name: "authController",
         children: [
             {
                 path: 'userController',
-                title: '用户管理',
-                // component: Layout,
                 name: 'userController',
+                meta: {
+                    title: "用户管理",
+                    icon: 'bx bx-category'
+                },
+                // component: Layout,
                 children: [
                     {
                         path: 'userList',
-                        title: "用户列表",
+                        name: 'userList',
+                        meta: {
+                            title: "用户列表",
+                            icon: 'bx bx-category'
+                        },
                         component: () => import('../components/authController/userController/userList')
                     },
                     {
                         path: 'addUser',
-                        title: "添加用户",
+                        name: 'addUser',
+                        meta: {
+                            title: "添加用户",
+                            icon: 'bx bx-category'
+                        },
                         component: () => import('../components/authController/userController/addUser')
                     }
                 ]
@@ -53,18 +81,29 @@ let routes = [
     },
     {
         path: '/personalCenter',
-        component: Layout,
-        title: "个人中心",
         name: 'personalCenter',
+        component: Layout,
+        meta: {
+            title: "个人中心",
+            icon: 'bx bx-category'
+        },
         children: [
             {
                 path: 'profile',
-                title: "个人信息",
+                name: 'profile',
+                meta: {
+                    title: "个人信息",
+                    icon: 'bx bx-category'
+                },
                 component: () => import('../components/personalCenter/profile')
             },
             {
                 path: 'resetPwd',
-                title: "密码更改",
+                name: 'resetPwd',
+                meta: {
+                    title: "密码更改",
+                    icon: 'bx bx-category'
+                },
                 component: () => import('../components/personalCenter/resetPwd')
             }
         ]

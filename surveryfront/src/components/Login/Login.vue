@@ -1,5 +1,5 @@
 <template>
-  <div class="login" id="login">
+  <div class="login" id="login" ref="loginForm">
     <a href="javascript:;" class="log-close"><i class="icons close"></i></a>
     <div class="log-bg">
       <div class="log-cloud cloud1"></div>
@@ -26,14 +26,17 @@
         "
         v-model="loginForm.password"
       />
-      <a href="javascript:;" class="log-btn" @click="login">Login</a>
+      <a href="javascript:;" class="log-btn" @click="login('loginForm')"
+        >Login</a
+      >
     </div>
-    <!-- <Loading v-if="isLoging" marginTop="-30%"></Loading> -->
   </div>
+  <!-- <Loading v-if="isLoging" marginTop="-30%"></Loading> -->
 </template>
 
 
 <script>
+import request from "../../utils/request";
 export default {
   name: "Login",
   data() {
@@ -65,24 +68,29 @@ export default {
       };
       console.log(data);
       // 设置响应拦截器
-      this.$axios.interceptors.response.use((response) => {
-        // 拦截器已经拦截获取了响应数据里的data,对象中的data
+      request.interceptors.response.use((response) => {
+        response.headers.Authorization = window.localStorage.getItem("token");
+        // 拦截器已经拦截获取了响应数据里的data（对象中的data）
         return response.data;
       }),
         (err) => {
           console.log(err);
         };
-
-      this.$axios.post("/api/login", data).then((res) => {
+      // this.$refs.loginForm.validate(async (valid) => {
+      //   if (!valid) return;
+      request.post("/api/login", data).then((res) => {
         //所以此处打印的是用户状态信息
         console.log(res);
+        console.log(res.data);
         if (res.code === 200) {
           alert("登陆成功！");
+          window.localStorage.setItem("token", res.data);
           this.$router.push("/");
         } else {
           alert("用户名或密码错误,请重新尝试！");
         }
       });
+      // });
     },
   },
 };
