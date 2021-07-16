@@ -36,7 +36,7 @@
           <el-button
             size="mini"
             type="danger"
-            @click="handleDelete(scope.row.id)"
+            @click="handleDelete(scope.$index,scope.row.id)"
             >删除</el-button
           >
         </template>
@@ -65,7 +65,7 @@ export default {
     handleEdit(index, row) {
       console.log(index, row);
     },
-    async handleDelete(id) {
+    async handleDelete(index,id) {
       const confirmResult = await this.$confirm(
         "此操作将永久删除该用户,是否继续？",
         "提示",
@@ -77,9 +77,9 @@ export default {
       ).catch((err) => err);
       if (confirmResult === "confirm") {
         this.$message.success("删除成功!");
-        // this.tableData[index].remove()
+        this.tableData.splice(index,1)
         deleteById(id);
-        this.reload()
+        // this.reload()
       } else {
         this.$message.info("删除失败!");
       }
