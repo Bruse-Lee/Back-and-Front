@@ -7,7 +7,8 @@ let routes = [
         redirect: { path: '/dashboard' },
         meta: {
             title: "根目录",
-            icon: 'bx bx-category'
+            icon: 'bx bx-notification bx-flashing',
+            style: 'color:#fffff'
         },
         children: [
             {
@@ -87,7 +88,7 @@ let routes = [
         component: Layout,
         meta: {
             title: "个人中心",
-            icon: 'bx bxl-reddit',
+            icon: 'bx bx-user',
             style: 'color:#5e5d5d'
         },
         children: [

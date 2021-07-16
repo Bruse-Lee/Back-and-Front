@@ -17,7 +17,7 @@
           <router-view></router-view>
         </el-main>
         <el-footer>
-          Copyright © 2021 - 2021 9I Co. All Rights Reserved. BruseLee 版权所有
+          Copyright © 2021 - 2021 Raccoon. All Rights Reserved. BruseLee 版权所有
         </el-footer>
       </el-container>
     </el-container>
@@ -26,12 +26,10 @@
 
 <script>
 import Sidebar from "../components/sidebar/sidebar.vue";
-// import Headbar from "../components/headNavbar/headBar.vue";
 import routes from "../router/routes";
 export default {
   components: {
-    Sidebar,
-    // Headbar,
+    Sidebar,    
   },
   data() {
     return {
@@ -86,10 +84,6 @@ export default {
 body {
   margin: 0;
 }
-/* .el-aside {
-  width: auto;
-  border-right: none;
-} */
 .el-header {
   display: flex;
   align-items: center;
@@ -104,6 +98,8 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
+  font-family: fantasy;
+  font-size: 23px;
   color: white;
 }
 .bx-menu {
