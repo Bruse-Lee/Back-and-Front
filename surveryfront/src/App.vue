@@ -1,33 +1,38 @@
 <template>
   <div id="app">
-    <router-view ></router-view>
+    <router-view v-if="isRouterAlive"></router-view>
   </div>
 </template>
 
 <script>
 export default {
   name: "app",
-  provide(){
-    return{
-      reload:this.reload
-    }
+  // provide与inject:使用场景：
+  // 由于vue有$parent属性可以让子组件访问父组件。但孙组件想要访问祖先组件就比较困难。
+  // 通过provide/inject可以轻松实现跨级访问祖先组件的数据
+
+  // 父组件中返回要传给下级的数据
+  provide() {
+    return {
+      reload: this.reload,
+    };
   },
-  data(){
-    return{
-      isRouterAlive:true
-    }
+  data() {
+    return {
+      isRouterAlive: true,
+    };
   },
   components: {
     // HelloWorld
   },
-  methods:{
-    reload(){
-      this.isRouterAlive = false
-      this.$nextTick(function(){
-        this.isRouterAlive = true
-      })
-    }
-  }
+  methods: {
+    reload() {
+      this.isRouterAlive = false;
+      this.$nextTick(function () {
+        this.isRouterAlive = true;
+      });
+    },
+  },
 };
 </script>
 

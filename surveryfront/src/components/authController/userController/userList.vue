@@ -36,7 +36,7 @@
           <el-button
             size="mini"
             type="danger"
-            @click="handleDelete(scope.$index,scope.row.id)"
+            @click="handleDelete(scope.$index, scope.row.id)"
             >删除</el-button
           >
         </template>
@@ -60,12 +60,13 @@ export default {
     };
   },
   // 注入reload方法
+  // 这样就实现了子组件调取reload方法就实现了刷新vue组件的功能,这样应该是它实现了组件跨越组件传递数据方法。
   inject: ["reload"],
   methods: {
     handleEdit(index, row) {
       console.log(index, row);
     },
-    async handleDelete(index,id) {
+    async handleDelete(index, id) {
       const confirmResult = await this.$confirm(
         "此操作将永久删除该用户,是否继续？",
         "提示",
@@ -77,7 +78,7 @@ export default {
       ).catch((err) => err);
       if (confirmResult === "confirm") {
         this.$message.success("删除成功!");
-        this.tableData.splice(index,1)
+        this.tableData.splice(index, 1);
         deleteById(id);
         // this.reload()
       } else {
