@@ -93,20 +93,21 @@ body {
 .el-header {
   display: flex;
   align-items: center;
-  background-color: white;
+  background-color: black;
 }
 .el-main {
-  background-color: white;
+  background-color: black;
   min-height: calc(100vh - 120px);
 }
 .el-footer {
-  background-color: #f5f6fa;
+  background-color: black;
   display: flex;
   align-items: center;
   justify-content: center;
+  color: white;
 }
 .bx-menu {
-  color: #11101d;
+  color: white;
   font-size: 35px;
   margin: 0 5px;
   cursor: pointer;

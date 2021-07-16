@@ -6,15 +6,15 @@
         :index="menu.path"
       >
         <template slot="title">
-          <i :class="menu.meta.icon"></i>&nbsp;
+          <i :class="menu.meta.icon" :style="menu.meta.style"></i>&nbsp;
           <span>{{ menu.meta.title }}</span>
         </template>
 
         <sidebar-item :menus="menu.children"></sidebar-item>
       </el-submenu>
 
-       <el-menu-item v-else :index="menu.path">
-        <i :class="menu.meta.icon"></i>&nbsp;
+      <el-menu-item v-else :index="menu.path">
+        <i :class="menu.meta.icon" :style="menu.meta.style"></i>&nbsp;
         <span slot="title">{{ menu.meta.title }}</span>
       </el-menu-item>
     </div>
@@ -35,7 +35,7 @@ export default {
 
 <style scoped>
 @import "https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css";
-i{
+i {
   font-size: 30px;
 }
 </style>

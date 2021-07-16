@@ -14,8 +14,9 @@ let routes = [
                 path: 'dashboard',
                 name: 'dashboard',
                 meta: {
-                    icon: 'bx bx-dialpad',
-                    title: "仪表盘"
+                    title: "仪表盘",
+                    icon: 'bx bxl-windows bx-flashing',
+                    style: 'color:#87a6e2'
                 },
                 component: () => import('../components/Dashboard/dashboard')
             },
@@ -86,7 +87,8 @@ let routes = [
         component: Layout,
         meta: {
             title: "个人中心",
-            icon: 'bx bxs-user-circle'
+            icon: 'bx bxl-reddit',
+            style: 'color:#5e5d5d'
         },
         children: [
             {
@@ -94,7 +96,8 @@ let routes = [
                 name: 'profile',
                 meta: {
                     title: "个人信息",
-                    icon: 'bx bx-user-circle'
+                    icon: 'bx bx-id-card bx-tada',
+                    style: 'color:#e29a9a'
                 },
                 component: () => import('../components/personalCenter/profile')
             },
@@ -103,7 +106,7 @@ let routes = [
                 name: 'resetPwd',
                 meta: {
                     title: "密码更改",
-                    icon: 'bx bxl-tux'
+                    icon: 'bx bxs-skull bx-burst'
                 },
                 component: () => import('../components/personalCenter/resetPwd')
             },
@@ -112,8 +115,8 @@ let routes = [
     {
         path: '/Login',
         title: "登錄",
-        meta:{
-            hidden:true
+        meta: {
+            hidden: true
         },
         component: () => import('../components/Login/Login')
     },
