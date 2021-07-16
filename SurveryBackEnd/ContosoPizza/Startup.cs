@@ -35,6 +35,7 @@ namespace ContosoPizza
                 options.AddPolicy("any", builder =>
                 {
                     builder.WithMethods("GET", "POST", "HEAD", "PUT", "DELETE", "OPTIONS")
+                    .AllowAnyHeader()
                     //.AllowCredentials()//指定处理cookie
                 .AllowAnyOrigin(); //允许任何来源的主机访问
                 });

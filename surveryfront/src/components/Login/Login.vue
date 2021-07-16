@@ -86,7 +86,7 @@ export default {
         console.log(res.data);
         if (res.code === 200) {
           alert("登陆成功！");
-          window.localStorage.setItem("token", res.data);
+          // window.localStorage.setItem("token", res.data);
           this.$router.push("/");
         } else {
           alert("用户名或密码错误,请重新尝试！");

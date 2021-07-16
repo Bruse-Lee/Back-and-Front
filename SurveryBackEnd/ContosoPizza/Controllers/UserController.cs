@@ -162,7 +162,7 @@ namespace ContosoPizza.Controllers
         }
 
         [AllowAnonymous]
-        [HttpPost, Route("RequestToken")]
+        [HttpPost, Route("/api/login")]
         public dynamic GetToken(UserCreate users)
         {
             var username = users.username.Trim();
