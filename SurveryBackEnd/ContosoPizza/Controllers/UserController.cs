@@ -47,7 +47,7 @@ namespace ContosoPizza.Controllers
             };
         }
 
-        
+
         // GET by Id action
         [HttpGet("{id}")]
         public dynamic Get(int id)
@@ -80,21 +80,32 @@ namespace ContosoPizza.Controllers
                 return NoContent(); // 204 No Content：服务器成功处理了请求，但没返回任何内容
             }
 
-            var user = new User
+            var hasUser = _userRepository.Table.Where(x => x.Username == username).SingleOrDefault();
+
+            if (hasUser != null)
             {
-                Username = users.username,
-                Password = users.password
-            };
-
-            _userRepository.Insert(user);
-
-            return new
+                return new
+                {
+                    Code = 1000,
+                    Msg = "用户名已存在,请确认后重试！"
+                };
+            }
+            else
             {
-                Code = 200,
-                Data = user,
-                Msg = "创建用户成功！"
-            };
+                var user = new User
+                {
+                    Username = users.username,
+                    Password = users.password
+                };
+                _userRepository.Insert(user);
 
+                return new
+                {
+                    Code = 200,
+                    Data = user,
+                    Msg = "创建用户成功！"
+                };
+            }
         }
 
         [AllowAnonymous]
