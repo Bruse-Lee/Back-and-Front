@@ -5,22 +5,13 @@
       class="el-menu-vertical-demo"
       background-color="black"
       text-color="#dff9fb"
-      active-text-color="#f6e58d"
+      active-text-color="#fffa65"
       router
       :collapse="collapse"
-      unique-opened
+      
     >
       <sidebarItem :menus="menus"></sidebarItem>
-      <div class="profile-details">
-        <div class="profile-content">
-          <img src="./image/史努比.jpg" alt="profile" />
-        </div>
-        <div class="name-job">
-          <div class="profile_name">Prem Shahi</div>
-          <div class="job">Web Desginer</div>
-        </div>
-        <!-- <i class="bx bx-log-out"></i> -->
-      </div>
+      
     </el-menu>
   <!-- </el-scrollbar> -->
 </template>

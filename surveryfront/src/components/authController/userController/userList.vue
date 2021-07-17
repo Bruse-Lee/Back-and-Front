@@ -62,7 +62,7 @@
 <script>
 import { GetList, deleteById } from "../../../api/user";
 export default {
-  created: function () {
+  mounted: function () {
     GetList().then((res) => {
       this.tableData = res.data.data;
       console.log(res.data.data);

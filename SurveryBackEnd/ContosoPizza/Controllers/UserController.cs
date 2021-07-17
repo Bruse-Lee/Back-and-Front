@@ -39,12 +39,14 @@ namespace ContosoPizza.Controllers
             if (user == null)
                 return NotFound();
 
-            return new
+            var res = new
             {
                 Code = 200,
                 Data = user,
                 Msg = "获取列表成功！"
             };
+
+            return JsonHelper.Serialize(res);
         }
 
 
