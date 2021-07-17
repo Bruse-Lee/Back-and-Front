@@ -4,11 +4,11 @@
                    :before-close="handleCancel" :close-on-click-modal="false" @open="openAddUser()">
             <el-form label-position="right" label-width="100px" :inline="true" :model="userInfo" :rules="rules" ref="user"
                      style="padding: 0px 70px 0px 10px;" class="demo-ruleForm">
-                <el-form-item label="用户名" prop="userName">
-                    <el-input v-model="userInfo.userName" @blur="checkUserName" clearable placeholder="请输入用户名"></el-input>
+                <el-form-item label="用户名" prop="Username">
+                    <el-input v-model="userInfo.Username" @blur="checkUsername" clearable placeholder="请输入用户名"></el-input>
                 </el-form-item>
-                <el-form-item label="密码" prop="password">
-                    <el-input type="password" v-model="userInfo.password" placeholder="请输入登录密码"
+                <el-form-item label="密码" prop="Password">
+                    <el-input type="Password" v-model="userInfo.Password" placeholder="请输入用户密码"
                               autocomplete="off" clearable></el-input>
                 </el-form-item>
             </el-form>
@@ -42,7 +42,7 @@
             // var validatePass2 = (rule, value, callback) => {
             //     if (value === '') {
             //         callback(new Error('请再次输入密码'));
-            //     } else if (value !== this.userInfo.password) {
+            //     } else if (value !== this.userInfo.Password) {
             //         callback(new Error('两次输入密码不一致!'));
             //     } else {
             //         callback();
@@ -70,8 +70,8 @@
             // };
             return {
                 userInfo: {
-                    userId: '',
-                    userName: '',
+                    // userId: '',
+                    Username: '',
                     // realName: '',
                     // identity: '',
                     // sex: '1',
@@ -81,15 +81,15 @@
                     // roleId: '1',
                     // roleName: '',
                     // userStatus: '1',
-                    password: '',
+                    Password: '',
                     // checkPassword: ''
                 },
                 rules: {
-                    userName: [
+                    Username: [
                         {required: true, message: '请输入用户名', trigger: 'blur'},
                         {min: 3, max: 10, message: '长度在 3 到 10 个字符', trigger: 'blur'}
                     ],
-                    password: [
+                    Password: [
                         {required: true, validator: validatePass, trigger: 'blur'}
                     ],
                     // checkPassword: [
@@ -144,19 +144,19 @@
             resetForm(formName) {
                 this.$refs[formName].resetFields();
             },
-            checkUserName(){
+            checkUsername(){
                 let app = this;
                 let data={
-                    userName:app.userInfo.userName
+                    Username:app.userInfo.Username
                 }
-                app.$Api.checkUserName(data, function (result) {
+                app.$Api.checkUsername(data, function (result) {
                     if (result.result == "false") {
                         app.$notify({
                             title: '温馨提示：',
                             message: result.message,
                             type: 'warning'
                         });
-                        app.userInfo.userName='';
+                        app.userInfo.Username='';
                     }
                 });
             }

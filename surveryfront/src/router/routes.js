@@ -7,8 +7,8 @@ let routes = [
         redirect: { path: '/dashboard' },
         meta: {
             title: "根目录",
-            icon: 'bx bx-notification bx-flashing',
-            style: 'color:#fffff'
+            icon: 'bx bx-notification',
+            style: 'color:#181818'
         },
         children: [
             {
@@ -17,7 +17,7 @@ let routes = [
                 meta: {
                     title: "仪表盘",
                     icon: 'bx bxl-windows bx-flashing',
-                    style: 'color:#87a6e2'
+                    style: 'color:#181818'
                 },
                 component: () => import('../components/Dashboard/dashboard')
             },
@@ -26,7 +26,8 @@ let routes = [
                 name: 'home',
                 meta: {
                     title: "首页",
-                    icon: 'bx bxl-spring-boot'
+                    icon: 'bx bxl-spring-boot',
+                    style: 'color:#181818'
                 },
                 component: () => import('../components/sidebar/home')
             },
@@ -35,7 +36,8 @@ let routes = [
                 name: 'log',
                 meta: {
                     title: "日志中心",
-                    icon: 'bx bxl-blogger'
+                    icon: 'bx bxl-blogger',
+                    style: 'color:#181818'
                 },
                 component: () => import('../components/sidebar/log')
             },
@@ -57,7 +59,8 @@ let routes = [
         component: Layout,
         meta: {
             title: "用户管理",
-            icon: 'bx bx-confused'
+            icon: 'bx bx-confused',
+            style: 'color:#181818'
         },
         children: [
             {
@@ -65,7 +68,8 @@ let routes = [
                 name: 'userList',
                 meta: {
                     title: "用户列表",
-                    icon: 'bx bxs-user-detail'
+                    icon: 'bx bxs-user-detail',
+                    style: 'color:#181818'
                 },
                 component: () => import('../components/authController/userController/userList')
             },
@@ -74,7 +78,8 @@ let routes = [
                 name: 'addUser',
                 meta: {
                     title: "添加用户",
-                    icon: 'bx bxs-user-plus'
+                    icon: 'bx bxs-user-plus',
+                    style: 'color:#181818'
                 },
                 component: () => import('../components/authController/userController/addUser')
             }
@@ -89,7 +94,8 @@ let routes = [
         meta: {
             title: "个人中心",
             icon: 'bx bx-user',
-            style: 'color:#5e5d5d'
+            style: 'color:#181818',
+            
         },
         children: [
             {
@@ -98,7 +104,7 @@ let routes = [
                 meta: {
                     title: "个人信息",
                     icon: 'bx bx-id-card bx-tada',
-                    style: 'color:#e29a9a'
+                    style: 'color:#181818'
                 },
                 component: () => import('../components/personalCenter/profile')
             },
@@ -107,7 +113,8 @@ let routes = [
                 name: 'resetPwd',
                 meta: {
                     title: "密码更改",
-                    icon: 'bx bxs-skull bx-burst'
+                    icon: 'bx bxs-skull bx-burst',
+                    style: 'color:#181818'
                 },
                 component: () => import('../components/personalCenter/resetPwd')
             },

@@ -21,6 +21,6 @@ export function changeInfo(data){
 }
 
 // 新增用户
-export function newUser(data){
-    return request.post(`/user/${data}`)
-}
+// export function newUser(){
+//     return request.post(`/user/register`)
+// }

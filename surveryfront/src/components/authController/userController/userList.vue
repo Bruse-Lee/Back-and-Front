@@ -1,11 +1,11 @@
 <template>
   <div>
-    <el-card class="box-card">
+    <el-card class="box-card" style="height: 70px">
       <el-form :inline="true" :model="formInline" class="demo-form-inline">
         <el-input
           v-model="formInline.user"
           placeholder="Search..."
-          class="scarch"
+          class="search"
         ></el-input>
         &nbsp;
         <el-button
@@ -24,13 +24,9 @@
         ></AddUser>
       </el-form>
     </el-card>
+    &nbsp;
     <el-table
-      :data="
-        tableData.filter(
-          (data) =>
-            !search || data.name.toLowerCase().includes(search.toLowerCase())
-        )
-      "
+      :data="tableData"
       max-height="680px"
       border
       class="elTable"
@@ -93,6 +89,7 @@
 
 <script>
 import { GetList, deleteById } from "../../../api/user";
+import request from '../../../utils/request'
 import AddUser from "./add.vue";
 export default {
   mounted: function () {
@@ -123,11 +120,31 @@ export default {
       this.addUserVisible = true;
     },
     addUser(data) {
+      console.log(data);
       let APP = this;
-      APP.$Api.addUser(data, function () {
-        console.log(data);
-        APP.addUserVisible = true;
+      let res = JSON.parse(JSON.stringify(data));
+      // let result = {
+      //   "Username": res.Username,
+      //   "Password": res.Password,
+      // };
+      console.log(res);
+      // console.log(result);
+      request.post("/user/register",res).then((res) => {
+        //所以此处打印的是用户状态信息
+        console.log(res);
+        console.log(res.data);
+        if (res.data.code === 200) {
+          alert("注册成功");
+          this.addUserVisible = false
+        } else {
+          alert("用户名已存在,请重新尝试！");
+        }
       });
+      //  this.$axios.post("http://localhost:8085/user/register.do",this.$qs.stringify(this.user)).then(function(res){
+
+
+      // console.log(data);
+      APP.addUserVisible = true;
     },
 
     handleEdit(index, row) {
@@ -153,6 +170,7 @@ export default {
       }
       console.log(id);
     },
+    onSubmit() {},
   },
 };
 </script>
@@ -161,7 +179,7 @@ export default {
 .elTable {
   border-radius: 10px;
 }
-.scarch {
+.search {
   width: 200px;
 }
 </style>>

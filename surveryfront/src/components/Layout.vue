@@ -1,23 +1,21 @@
 <template>
   <div>
     <el-container>
-      <el-aside :style="asideStyle">
-        <sidebar :menus="menus">
-        </sidebar>   
+      <el-aside :style="asideStyle" class="aside">
+        <sidebar :menus="menus"> </sidebar>
       </el-aside>
       <el-container>
-        <el-header>
+        <el-header class="header">
           <a href="#"
             ><i class="bx bx-menu" :class="iconTurn" @click="handleCollapse"></i
           ></a>
-          <!-- <headbar>
-        </headbar> -->
         </el-header>
         <el-main>
           <router-view></router-view>
         </el-main>
         <el-footer>
-          Copyright © 2021 - 2021 Raccoon. All Rights Reserved. BruseLee 版权所有
+          Copyright © 2021 - 2021 Raccoon. All Rights Reserved. BruseLee
+          版权所有
         </el-footer>
       </el-container>
     </el-container>
@@ -29,7 +27,7 @@ import Sidebar from "../components/sidebar/sidebar.vue";
 import routes from "../router/routes";
 export default {
   components: {
-    Sidebar,    
+    Sidebar,
   },
   data() {
     return {
@@ -84,26 +82,34 @@ export default {
 body {
   margin: 0;
 }
-.el-header {
+
+.header {
   display: flex;
   align-items: center;
-  background-color: black;
+  background-color: #c7ecee;
+  /* overflow: unset; */
+  position: relative;
+  box-shadow: 0px 1px 0px 0px #e5e5e5 ;
+}
+.aside{
+  box-shadow: 0.2px 0px 0px 0px #D6A2E8;
 }
 .el-main {
-  background-color: black;
+  background-color: #dff9fb;
   min-height: calc(100vh - 120px);
 }
 .el-footer {
-  background-color: black;
+  background-color: #c7ecee;
   display: flex;
   align-items: center;
   justify-content: center;
   font-family: fantasy;
   font-size: 23px;
-  color: white;
+  color: black;
+  box-shadow: 0px -1px 0px 0px #e5e5e5;
 }
 .bx-menu {
-  color: white;
+  color: black;
   font-size: 35px;
   margin: 0 5px;
   cursor: pointer;

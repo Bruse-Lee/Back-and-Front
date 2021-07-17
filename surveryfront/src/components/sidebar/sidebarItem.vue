@@ -76,7 +76,7 @@ i {
   object-fit: cover;
   border-radius: 16px;
   margin: 0 14px 0 12px;
-  background: #1d1b31;
+  background: #c7ecee;
   transition: all 0.5s ease;
 }
 .profile-details img {
@@ -84,7 +84,7 @@ i {
 }
 .profile-details .profile_name,
 .profile-details .job {
-  color: #fff;
+  color: black;
   font-size: 18px;
   font-weight: 500;
   white-space: nowrap;
