@@ -131,7 +131,7 @@ export default {
         console.log(res);
         console.log(result.data);
         if (res.data.code === 200) {
-          alert("注册成功");
+          alert("创建成功!");
           this.addUserVisible = false;
           this.reload();
         } else if (res.data.code === 104) {
