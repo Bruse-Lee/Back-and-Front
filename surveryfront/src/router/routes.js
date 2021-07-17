@@ -1,4 +1,6 @@
 import Layout from '../components/Layout'
+// 用户列表在项目运行时进行加载,提高加载速度的同时也会使项目首次加载时间延长
+import userList from '../components/authController/userController/userList'
 
 let routes = [
     {
@@ -71,7 +73,7 @@ let routes = [
                     icon: 'bx bxs-user-detail',
                     style: 'color:#181818'
                 },
-                component: () => import('../components/authController/userController/userList')
+                component: userList
             },
             {
                 path: 'addUser',
@@ -95,7 +97,7 @@ let routes = [
             title: "个人中心",
             icon: 'bx bx-user',
             style: 'color:#181818',
-            
+
         },
         children: [
             {
