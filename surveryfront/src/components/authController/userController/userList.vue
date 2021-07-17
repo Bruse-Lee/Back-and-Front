@@ -120,8 +120,11 @@ export default {
     },
     // 新增用户
     addUser(db) {
-      console.log(db);
+      // 返回的数据为__ob__: Observer：这些数据是vue这个框架对数据设置的监控器，一般都是不可枚举的
+      // __ob__: Observer这个属性出现之后，如果单独拿数据的值，就会返回undefined
       let APP = this;
+      // 使用下面方法进行取值
+      // 先将js对象表示法(JSON)字符串转为一个对象,再将js值转换为JSON字符串
       let result = JSON.parse(JSON.stringify(db));
       newUser(result).then((res) => {
         //所以此处打印的是用户状态信息
@@ -176,7 +179,6 @@ export default {
 .search {
   width: 200px;
 }
-
 </style>>
 
 
