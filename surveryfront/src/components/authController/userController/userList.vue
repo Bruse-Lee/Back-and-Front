@@ -15,7 +15,7 @@
         ></el-button>
         &nbsp;
         <el-button @click="editAddUser()" type="primary" size="stander"
-          ><i class="el-icon-circle-plus-outline"></i>
+          ><i class="el-icon-circle-plus-outline">添加用户</i>
         </el-button>
         <AddUser
           :addUserVisible="addUserVisible"
@@ -88,8 +88,7 @@
 </template>
 
 <script>
-import { GetList, deleteById } from "../../../api/user";
-import request from "../../../utils/request";
+import { GetList, deleteById, newUser } from "../../../api/user";
 import AddUser from "./add.vue";
 export default {
   mounted: function () {
@@ -120,22 +119,22 @@ export default {
       this.addUserVisible = true;
     },
     // 新增用户
-    addUser(data) {
-      console.log(data);
+    addUser(db) {
+      console.log(db);
       let APP = this;
-      let res = JSON.parse(JSON.stringify(data));
-      console.log(res);
-      request.post("/user/register", res).then((res) => {
+      let result = JSON.parse(JSON.stringify(db));
+      newUser(result).then((res) => {
         //所以此处打印的是用户状态信息
         console.log(res);
-        console.log(res.data);
+        console.log(result.data);
         if (res.data.code === 200) {
           alert("注册成功");
           this.addUserVisible = false;
-        } else if(res.data.code === 104){
+          this.reload();
+        } else if (res.data.code === 104) {
           alert("请输入正确的用户名或密码!");
-        }else{
-          alert("用户名已存在!")
+        } else {
+          alert("用户名已存在!");
         }
       });
 
@@ -177,6 +176,7 @@ export default {
 .search {
   width: 200px;
 }
+
 </style>>
 
 

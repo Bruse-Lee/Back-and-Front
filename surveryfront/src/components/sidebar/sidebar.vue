@@ -39,6 +39,7 @@ export default {
   height: 100vh;
   text-align: center;
   border-right: none;
+   /* box-shadow: 0.2px 0px 0px 0px #badc58; */
   font-weight: 800;
 }
 .el-menu-vertical-demo{

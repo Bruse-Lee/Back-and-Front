@@ -32,7 +32,7 @@ export default {
       ]);
 
       option = {
-        backgroundColor: "#000",
+        backgroundColor: "#dff9fb",
         tooltip: {
           formatter: "{a} <br/>{b} : {c}%",
         },
@@ -79,14 +79,14 @@ export default {
               fontSize: 12,
               fontWeight: 800,
               fontFamily: "Arial",
-              color: "#fff",
+              color: "black",
               offsetCenter: [0, "-60%"],
             },
             progress: {
               show: true,
               width: 3,
               itemStyle: {
-                color: "#fff",
+                color: "black",
               },
             },
             data: [
@@ -115,7 +115,7 @@ export default {
               distance: -7,
               length: 12,
               lineStyle: {
-                color: "#fff",
+                color: "black",
                 width: 4,
               },
             },
@@ -123,7 +123,7 @@ export default {
               distance: -8,
               length: 8,
               lineStyle: {
-                color: "#fff",
+                color: "black",
                 width: 2,
               },
             },
@@ -132,7 +132,7 @@ export default {
               fontSize: 18,
               fontWeight: 800,
               fontFamily: "Arial",
-              color: "#fff",
+              color: "black",
             },
             anchor: {},
             pointer: {
@@ -148,7 +148,7 @@ export default {
               },
             },
             title: {
-              color: "#fff",
+              color: "black",
               fontSize: 14,
               fontWeight: 800,
               fontFamily: "Arial",
@@ -181,7 +181,7 @@ export default {
               lineStyle: {
                 width: 0,
                 color: [
-                  [0.825, "#fff"],
+                  [0.825, "black"],
                   [1, "#f00"],
                 ],
               },
@@ -213,7 +213,7 @@ export default {
               fontSize: 35,
               fontWeight: 800,
               fontFamily: "Arial",
-              color: "#fff",
+              color: "black",
             },
             anchor: {},
             pointer: {
@@ -229,7 +229,7 @@ export default {
               },
             },
             title: {
-              color: "#fff",
+              color: "black",
               fontSize: 12,
               fontWeight: 800,
               fontFamily: "Arial",
@@ -283,7 +283,7 @@ export default {
                   fontSize: 60,
                   fontWeight: 800,
                   fontFamily: "Arial",
-                  color: "#fff",
+                  color: "black",
                   align: "center",
                   padding: [0, 5, 0, 0],
                 },
@@ -291,7 +291,7 @@ export default {
                   fontSize: 14,
                   fontWeight: 800,
                   fontFamily: "Arial",
-                  color: "#fff",
+                  color: "black",
                   rotate: 30,
                   padding: [0, 0, 20, 0],
                 },
@@ -350,14 +350,14 @@ export default {
                   fontWeight: 800,
                   fontFamily: "Arial",
                   lineHeight: 22,
-                  color: "#fff",
+                  color: "black",
                   align: "left",
                 },
                 b: {
                   fontWeight: 600,
                   fontFamily: "Arial",
                   lineHeight: 22,
-                  color: "#fff",
+                  color: "black",
                   align: "left",
                 },
               },
@@ -366,7 +366,7 @@ export default {
               show: true,
               width: 3,
               itemStyle: {
-                color: "#fff",
+                color: "black",
               },
             },
             data: [
@@ -399,7 +399,7 @@ export default {
               distance: -14,
               length: 16,
               lineStyle: {
-                color: "#fff",
+                color: "black",
                 width: 4,
               },
             },
@@ -407,7 +407,7 @@ export default {
               distance: -14,
               length: 10,
               lineStyle: {
-                color: "#fff",
+                color: "black",
                 width: 2,
               },
             },
@@ -416,7 +416,7 @@ export default {
               fontSize: 18,
               fontWeight: 800,
               fontFamily: "Arial",
-              color: "#fff",
+              color: "black",
               formatter: function (value) {
                 if (value === 0.5) {
                   return "2/4";
@@ -431,7 +431,7 @@ export default {
               show: true,
               width: 5,
               itemStyle: {
-                color: "#fff",
+                color: "black",
               },
             },
             anchor: {
@@ -453,12 +453,12 @@ export default {
                   fontSize: 15,
                   fontWeight: 800,
                   fontFamily: "Arial",
-                  color: "#fff",
+                  color: "black",
                 },
                 b: {
                   fontWeight: 600,
                   fontFamily: "Arial",
-                  color: "#fff",
+                  color: "black",
                 },
               },
             },
@@ -492,7 +492,7 @@ export default {
               distance: -8,
               length: 12,
               lineStyle: {
-                color: "#fff",
+                color: "black",
                 width: 4,
               },
             },
@@ -501,7 +501,7 @@ export default {
               length: 8,
               distance: -8,
               lineStyle: {
-                color: "#fff",
+                color: "black",
                 width: 2,
               },
             },
@@ -510,7 +510,7 @@ export default {
               fontSize: 18,
               fontWeight: 800,
               fontFamily: "Arial",
-              color: "#fff",
+              color: "black",
               formatter: function (value) {
                 return -value;
               },

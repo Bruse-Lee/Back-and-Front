@@ -89,10 +89,10 @@ body {
   background-color: #c7ecee;
   /* overflow: unset; */
   position: relative;
-  box-shadow: 0px 1px 0px 0px #e5e5e5 ;
+  box-shadow: 0px 1px 0px 0px #badc58 ;
 }
 .aside{
-  box-shadow: 0.2px 0px 0px 0px #D6A2E8;
+  box-shadow: 0.2px 0px 0px 0px #badc58;
 }
 .el-main {
   background-color: #dff9fb;
@@ -106,7 +106,7 @@ body {
   font-family: fantasy;
   font-size: 23px;
   color: black;
-  box-shadow: 0px -1px 0px 0px #e5e5e5;
+  box-shadow: 0px -1px 0px 0px #badc58;
 }
 .bx-menu {
   color: black;
