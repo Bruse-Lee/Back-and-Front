@@ -71,15 +71,19 @@ namespace ContosoPizza.Controllers
         // POST action
         [HttpPost]
         // 指定应用此属性的类或方法不需要授权。
+        [Route("register")]
         [AllowAnonymous]
-        public dynamic Post(UserCreate users)
+        public dynamic Post([FromBody]UserCreate users)
         {
             var username = users.username.Trim();
             var password = users.password.Trim();
 
             if (string.IsNullOrEmpty(username) || string.IsNullOrEmpty(password))
             {
-                return NoContent(); // 204 No Content：服务器成功处理了请求，但没返回任何内容
+                return new{
+                    Code = 104,
+                    Msg = "用户名不能为空!"
+                }; // 204 No Content：服务器成功处理了请求，但没返回任何内容
             }
 
             var hasUser = _userRepository.Table.Where(x => x.Username == username).SingleOrDefault();

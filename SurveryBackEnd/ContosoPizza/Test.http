@@ -15,7 +15,7 @@ Content-Type: application/json
 }
 
 ### Post 新增
-POST http://localhost:5000/user
+POST http://localhost:5000/user/register
 Content-Type: application/json
 
 {
