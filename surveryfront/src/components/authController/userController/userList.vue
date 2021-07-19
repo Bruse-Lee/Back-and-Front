@@ -89,10 +89,9 @@
         @size-change="handleSizeChange"
         @current-change="handleCurrentChange"
         :current-page="currentPage4"
-        :page-sizes="[10, 20]"
-        :page-size="100"
+        :page-size="pager.pageIndex"
         layout="total, sizes, prev, pager, next, jumper"
-        :total="400"
+        :total="pager.rowsTotal"
       >
       </el-pagination>
     </div>
@@ -117,6 +116,11 @@ export default {
       formInline: {
         user: "",
         region: "",
+      },
+      pager: {
+        pageIndex: 1,
+        pageSize: 10,
+        rowsTotal: 50,
       },
     };
   },
@@ -179,7 +183,9 @@ export default {
       }
       console.log(id);
     },
-    onSubmit() {},
+    onSubmit() {
+      
+    },
   },
 };
 </script>
