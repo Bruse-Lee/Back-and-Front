@@ -32,18 +32,6 @@ namespace ContosoPizza.Controllers
             _tokenParameter = _configuration.GetSection("TokenParameter").Get<TokenParameter>();
         }
 
-
-        [HttpGet]
-        public dynamic GetAudit(){
-            var info = _auditInfo.Table.ToList();
-            var res = new{
-                Code = 200,
-                Data = info,
-                Msg = "获取日志列表成功!"
-            };
-            return res;
-        }
-
         // GET all action
         [HttpGet]
         public dynamic Get()

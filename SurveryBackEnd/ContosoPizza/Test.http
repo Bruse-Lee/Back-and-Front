@@ -6,7 +6,7 @@ GET http://localhost:5000/user HTTP/1.1
 GET http://localhost:5000/audit HTTP/1.1
 
 ### Get Id
-GET http://localhost:5000/user/7 HTTP/1.1
+GET http://localhost:5000/user/48 HTTP/1.1
 
 ### Put 修改
 PUT http://localhost:5000/user/7 HTTP/1.1
