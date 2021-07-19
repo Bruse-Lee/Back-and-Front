@@ -1,6 +1,8 @@
 ### Get 获取列表
-GET http://localhost:5000/user HTTP/1.1
+GET http://localhost:5000/audit HTTP/1.1
 # Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1lIjoi5rWL6K-V55So5oi3IiwiaHR0cDovL3NjaGVtYXMubWljcm9zb2Z0LmNvbS93cy8yMDA4LzA2L2lkZW50aXR5L2NsYWltcy9yb2xlIjoiYWRtaW4iLCJleHAiOjE2MjU1NzExOTYsImlzcyI6IkJydXNlTGVlIn0.W4DD5VlraMg9fdDGiyWiAcENipsK8xwqyGgB6AmYMGY
+
+GET http://localhost:5000/audit HTTP/1.1
 
 ### Get Id
 GET http://localhost:5000/user/7 HTTP/1.1

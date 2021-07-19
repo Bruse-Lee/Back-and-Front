@@ -19,15 +19,29 @@ namespace ContosoPizza.Controllers
         // 存储配置的变量
         private IConfiguration _configuration;
         private IRepository<User> _userRepository;
+        private IRepository<AuditInfo> _auditInfo;
         // 存储Token配置参数
         private TokenParameter _tokenParameter;
 
         // 依赖注入
-        public UserController(IConfiguration configuration, IRepository<User> userRepository)
+        public UserController(IConfiguration configuration, IRepository<User> userRepository,IRepository<AuditInfo> auditInfo)
         {
             _configuration = configuration;
             _userRepository = userRepository;
+            _auditInfo = auditInfo;
             _tokenParameter = _configuration.GetSection("TokenParameter").Get<TokenParameter>();
+        }
+
+
+        [HttpGet]
+        public dynamic GetAudit(){
+            var info = _auditInfo.Table.ToList();
+            var res = new{
+                Code = 200,
+                Data = info,
+                Msg = "获取日志列表成功!"
+            };
+            return res;
         }
 
         // GET all action
