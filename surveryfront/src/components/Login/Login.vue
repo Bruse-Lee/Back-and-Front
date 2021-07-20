@@ -63,7 +63,6 @@ export default {
 
     // 登录请求
     toLogin() {
-      // let _this = this;
       let data = {
         username: this.loginForm.username,
         password: this.loginForm.password,
@@ -71,26 +70,23 @@ export default {
       console.log(data);
       // 设置响应拦截器
       request.interceptors.response.use((response) => {
-        // var token = response.headers.authorization;
-
         response.headers.authorization = window.localStorage.getItem("token");
-        // 拦截器已经拦截获取了响应数据里的data（对象中的data）
-        return response.data;
+        // 拦截器已经拦截获取了响应数据里后端返回的对象
+        let result = response.data;
+        console.log(result);
+        return result;
       }),
         (err) => {
           console.log(err);
         };
-      // this.$refs.loginForm.validate(async (valid) => {
-      //   if (!valid) return;
       request.post("/api/login", data).then((res) => {
         //所以此处打印的是用户状态信息
         console.log(res.data);
         console.log(res);
         if (res.code === 200) {
-          // alert("登陆成功！");
           this.$message({
             message: "登陆成功!",
-            type: "Success",
+            type: "success",
           });
           localStorage.setItem("token", res.data.token);
           this.$router.push("/");
@@ -98,7 +94,6 @@ export default {
           this.$message.error("用户名或密码错误,请重新尝试！");
         }
       });
-      // });
     },
   },
 };

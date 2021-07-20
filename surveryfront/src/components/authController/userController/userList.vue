@@ -96,11 +96,26 @@
       >
       </el-pagination>
     </div>
+    <!-- 增加和修改需要使用的模态框 -->
+    <el-dialog title="用户信息" :visible.sync="dialogFormVisible" width="120">
+      <el-form :model="formData">
+        <el-form-item label="用户名" label-width="60px">
+          <el-input v-model="formData.username" autocomplete="off"></el-input>
+        </el-form-item>
+        <el-form-item label="密码" label-width="60px">
+          <el-input v-model="formData.password" autocomplete="off"></el-input>
+        </el-form-item>
+      </el-form>
+      <div slot="footer" class="dialog-footer">
+        <el-button @click="handleCancel">取 消</el-button>
+        <el-button type="primary" @click="handleSave">确 定</el-button>
+      </div>
+    </el-dialog>
   </div>
 </template>
 
 <script>
-import { GetList, deleteById, newUser } from "../../../api/user";
+import { GetList, deleteById, newUser, changeInfo } from "../../../api/user";
 import AddUser from "./add.vue";
 export default {
   data() {
@@ -117,6 +132,13 @@ export default {
         user: "",
         region: "",
       },
+      formData: {
+        id: 0,
+        username: "",
+        password: "",
+      },
+      currentIndex: 0,
+      dialogFormVisible: false,
     };
   },
   components: {
@@ -139,16 +161,22 @@ export default {
       let result = JSON.parse(JSON.stringify(db));
       newUser(result).then((res) => {
         //所以此处打印的是用户状态信息
-        console.log(res);
-        console.log(result.data);
+        console.log(res.data);
+        console.log(result);
         if (res.data.code === 200) {
-          alert("创建成功!");
+          this.$message({
+            message: "创建成功!",
+            type: "success",
+          });
           this.addUserVisible = false;
           this.reload();
         } else if (res.data.code === 104) {
-          alert("请输入正确的用户名或密码!");
-        } else {
-          alert("用户名已存在!");
+          // alert("请输入正确的用户名或密码!");
+          this.$confirm("请输入正确的用户名或密码!", "提示", {
+            confirmButtonText: "确定",
+            cancelButtonText: "取消",
+            type: "warning",
+          });
         }
       });
 
@@ -171,7 +199,7 @@ export default {
       GetList(pager)
         .then(({ data }) => {
           let res = data.data;
-          console.log(res);
+          // console.log(res.data);
           this.tableData = res.data;
           this.pager = res.pager;
         })
@@ -180,7 +208,29 @@ export default {
         });
     },
     handleEdit(index, row) {
-      console.log(index, row);
+      // console.log(index, row);
+      this.dialogFormVisible = true;
+      this.formData.id = row.id;
+      this.formData.username = row.username;
+      this.formData.password = row.password;
+
+      this.currentIndex = index;
+    },
+    handleCancel() {
+      this.dialogFormVisible = false;
+    },
+    handleSave() {
+      this.dialogFormVisible = false;
+      changeInfo(this.formData.id, this.formData).then(({ data }) => {
+        console.log(data);
+        if (data.code === 104) {
+        }
+        this.$message({
+          message: "修改成功!",
+          type: "success",
+        });
+        this.tableData.splice(this.currentIndex, 1, data.data);
+      });
     },
     async handleDelete(index, id) {
       const confirmResult = await this.$confirm(

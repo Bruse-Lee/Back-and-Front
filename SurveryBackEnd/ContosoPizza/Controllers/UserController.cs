@@ -141,17 +141,16 @@ namespace ContosoPizza.Controllers
 
             var user = _userRepository.GetById(id);
 
-            if (user == null)
+            if (user != null)
             {
                 return new
                 {
-                    Code = 1000,
-                    Data = user,
-                    Msg = "此用户不存在,请确认后重试！"
+                    Code = 104,
+                    Data = "",
+                    Msg = "用户名已存在,请确认后重试！"
                 };
 
             }
-
 
             user.Username = updateuser.username;
             user.Password = updateuser.password;

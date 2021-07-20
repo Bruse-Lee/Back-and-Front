@@ -9,6 +9,11 @@ module.exports = {
                     '^/api': ''
                 }
             }
+        },
+        overlay: {
+            warnings: false,
+            errors: false
         }
+
     }
 }

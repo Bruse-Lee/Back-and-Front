@@ -21,7 +21,7 @@
         <el-form-item label="用户名" prop="Username">
           <el-input
             v-model="userInfo.Username"
-            @blur="checkUsername"
+            
             @keyup.native="btKeyUpUsername"
             clearable
             placeholder="请输入用户名"
@@ -57,12 +57,8 @@ export default {
     var validatePass = (rule, value, callback) => {
       if (value === "") {
         callback(new Error("请输入密码"));
-      } else {
-        if (this.userInfo.checkPassword !== "") {
-          this.$refs.user.validateField("checkPassword");
-        }
-        callback();
       }
+      callback();
     };
     // var validatePass2 = (rule, value, callback) => {
     //     if (value === '') {
@@ -161,7 +157,7 @@ export default {
         /[`~!#$%^&*()_=<>?:"{}|~！#￥%……&*（）={}|《》？：“”【】、；‘’，。、\s+]/g,
         ""
       );
-      this.inspectionRecord.description = e.target.value;
+      // this.inspectionRecord.description = e.target.value;
     },
     //关闭弹窗
     handleCancel() {
@@ -182,22 +178,22 @@ export default {
     resetForm(formName) {
       this.$refs[formName].resetFields();
     },
-    checkUsername() {
-      let app = this;
-      let data = {
-        Username: app.userInfo.Username,
-      };
-      app.$Api.checkUsername(data, function (result) {
-        if (result.result == "false") {
-          app.$notify({
-            title: "温馨提示：",
-            message: result.message,
-            type: "warning",
-          });
-          app.userInfo.Username = "";
-        }
-      });
-    },
+    // checkUsername() {
+    //   let app = this;
+    //   let data = {
+    //     Username: app.userInfo.Username,
+    //   };
+    //   app.$Api.checkUsername(data, function (result) {
+    //     if (result.result == "false") {
+    //       app.$notify({
+    //         title: "温馨提示：",
+    //         message: result.message,
+    //         type: "warning",
+    //       });
+    //       app.userInfo.Username = "";
+    //     }
+    //   });
+    // },
   },
 };
 </script>

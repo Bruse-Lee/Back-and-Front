@@ -16,8 +16,8 @@ export function GetById(id) {
 }
 
 // 修改个人信息
-export function changeInfo(id) {
-    return request.put(`/user/${id}`)
+export function changeInfo(id,params) {
+    return request.put(`/user/${id}`,params)
 }
 
 // 新增用户
