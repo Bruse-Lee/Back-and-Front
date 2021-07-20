@@ -1,5 +1,5 @@
 import request from '../utils/request'
 
-export default function getAudit() {
-    return request.get('/audit')
+export function getAudit(params) {
+    return request.get('/audit', { params: params })
 }

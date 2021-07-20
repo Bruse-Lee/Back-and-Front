@@ -183,9 +183,7 @@ export default {
       }
       console.log(id);
     },
-    onSubmit() {
-      
-    },
+    onSubmit() {},
   },
 };
 </script>

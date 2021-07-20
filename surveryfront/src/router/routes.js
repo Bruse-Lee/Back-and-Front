@@ -10,7 +10,8 @@ let routes = [
         meta: {
             title: "根目录",
             icon: 'bx bx-notification',
-            style: 'color:#181818'
+            style: 'color:#181818',
+            hidden: true,
         },
         children: [
             {

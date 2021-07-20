@@ -1,7 +1,9 @@
 
 using System.Linq;
 using ContosoPizza.Models;
+using ContosoPizza.Parmas;
 using ContosoPizza.Repository;
+using ContosoPizza.Utils;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 
@@ -22,16 +24,19 @@ namespace ContosoPizza.Controllers
 
 
         [HttpGet]
-        public dynamic GetAudit()
+        public string GetAudit([FromQuery] Pager pager)
         {
-            var info = _auditInfo.Table.ToList();
+            var pageIndex = pager.PageIndex;
+            var pageSize = pager.PageSize;
+            var info = _auditInfo.Table;
+            var pagingInfo = info.Skip((pageIndex - 1) * pageSize).Take(pageSize).ToList();
             var res = new
             {
                 Code = 200,
-                Data = info,
+                Data = new { Data = pagingInfo, Pager = new { pageIndex, pageSize, rowsTotal = info.Count() } },
                 Msg = "获取日志列表成功!"
             };
-            return res;
+            return JsonHelper.Serialize(res);
         }
     }
 }

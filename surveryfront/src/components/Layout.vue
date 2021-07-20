@@ -52,9 +52,14 @@ export default {
 
         if (obj.children && obj.children.length > 0) {
           obj.children = this.resolve(obj.children, obj.path);
+        // } else if (obj.meta.hidden) {
+        //   obj.children.forEach((item) => {
+        //     let temple = Object.assign({}, item);
+        //     newArr.push(temple);
+        //   });
         }
-        // console.log(obj.path);
-        newArr.push(obj);
+          newArr.push(obj);
+      
       });
       return newArr;
     },
@@ -89,9 +94,9 @@ body {
   background-color: #c7ecee;
   /* overflow: unset; */
   position: relative;
-  box-shadow: 0px 1px 0px 0px #badc58 ;
+  box-shadow: 0px 1px 0px 0px #badc58;
 }
-.aside{
+.aside {
   box-shadow: 0.2px 0px 0px 0px #badc58;
 }
 .el-main {

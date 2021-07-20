@@ -6,27 +6,27 @@
           <el-input placeholder="审批人"></el-input>
         </el-form-item>
         <el-form-item>
-          <el-button type="primary">查询</el-button>
+          <el-button>查询</el-button>
         </el-form-item>
         <el-form-item>
           <el-button type="primary">新增</el-button>
         </el-form-item>
       </el-form>
     </el-card>
-    <el-table :data="tableData" style="width: 100%" border align="center">
-      <el-table-column label="Id">
+    <el-table :data="tableData" style="width: 100%" border>
+      <el-table-column label="Id" align="center">
         <template slot-scope="scope">
           <i class="el-icon-time"></i>
           <span style="margin-left: 10px">{{ scope.row.id }}</span>
         </template>
       </el-table-column>
-      <el-table-column label="客户端地址">
+      <el-table-column label="客户端地址" align="center">
         <template slot-scope="scope">
           <i class="el-icon-time"></i>
           <span style="margin-left: 10px">{{ scope.row.clientIpAddress }}</span>
         </template>
       </el-table-column>
-      <el-table-column label="执行时间">
+      <el-table-column label="执行时间" align="center">
         <template slot-scope="scope">
           <el-popover trigger="hover" placement="top">
             <p>参数: {{ scope.row.parameters }}</p>
@@ -39,20 +39,20 @@
           </el-popover>
         </template>
       </el-table-column>
-      <el-table-column label="创建时间">
+      <el-table-column label="创建时间" align="center">
         <template slot-scope="scope">
           <i class="el-icon-time"></i>
           <span style="margin-left: 10px">{{ scope.row.createdTime }}</span>
         </template>
       </el-table-column>
 
-      <el-table-column label="备注">
+      <el-table-column label="备注" align="center">
         <template slot-scope="scope">
           <i class="el-icon-time"></i>
           <span style="margin-left: 10px">{{ scope.row.remarks }}</span>
         </template>
       </el-table-column>
-      <el-table-column label="操作" width="180px">
+      <el-table-column label="操作" width="180px" align="center">
         <template slot-scope="scope">
           <el-button size="mini" @click="handleEdit(scope.$index, scope.row)"
             >编辑</el-button
@@ -83,7 +83,7 @@
 
 <script>
 // import GetList from "../../api/user";
-import getAudit from "../../api/log";
+import { getAudit } from "../../api/log";
 export default {
   data() {
     return {
@@ -94,14 +94,6 @@ export default {
         rowsTotal: 30, // 总记录数
       },
     };
-  },
-  mounted() {
-    this.fetchData(this.pager);
-    getAudit().then((res) => {
-      let auditInfo = res.data.data;
-      this.tableData = auditInfo;
-      console.log(res.data.data);
-    });
   },
 
   methods: {
@@ -134,6 +126,9 @@ export default {
           console.log(err);
         });
     },
+  },
+  mounted() {
+    this.fetchData(this.pager);
   },
 };
 </script>
