@@ -117,16 +117,16 @@ export default {
     },
     // 拉取数据方法
     // fetchData(pager) {
-      // getAudit(pager)
-      //   .then(({ data }) => {
-      //     let res = data.data;
-      //     console.log(res);
-      //     this.tableData = res.data;
-      //     this.pager = res.pager;
-      //   })
-      //   .catch((err) => {
-      //     console.log(err);
-      //   });
+    //   getAudit(pager)
+    //     .then(({ data }) => {
+    //       let res = data.data;
+    //       console.log(res);
+    //       this.tableData = res.data;
+    //       this.pager = res.pager;
+    //     })
+    //     .catch((err) => {
+    //       console.log(err);
+    //     });
     // },
   },
   mounted() {

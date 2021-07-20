@@ -17,11 +17,11 @@
         <el-button @click="editAddUser()" type="primary" size="stander"
           ><i class="el-icon-circle-plus-outline">添加用户</i>
         </el-button>
-        <!-- <AddUser
+        <AddUser
           :addUserVisible="addUserVisible"
           @val-change="addUser"
           @cancel="addUserVisible = false"
-        ></AddUser> -->
+        ></AddUser>
       </el-form>
     </el-card>
     &nbsp;
@@ -100,7 +100,7 @@
 
 <script>
 import { GetList, deleteById, newUser } from "../../../api/user";
-// import AddUser from "./add.vue";
+import AddUser from "./add.vue";
 export default {
   data() {
     return {
@@ -110,7 +110,7 @@ export default {
       pager: {
         pageIndex: 1,
         pageSize: 10,
-        rowsTotal: 50,
+        rowsTotal: 20,
       },
       formInline: {
         user: "",
@@ -118,9 +118,9 @@ export default {
       },
     };
   },
-  // components: {
-  //   AddUser,
-  // },
+  components: {
+    AddUser,
+  },
   // 注入reload方法
   // 这样就实现了子组件调取reload方法就实现了刷新vue组件的功能,这样应该是它实现了组件跨越组件传递数据方法。
   inject: ["reload"],
@@ -177,10 +177,6 @@ export default {
           console.log(err);
         });
     },
-    mounted() {
-      this.fetchData(this.pager);
-    },
-
     handleEdit(index, row) {
       console.log(index, row);
     },
@@ -205,6 +201,9 @@ export default {
       console.log(id);
     },
     onSubmit() {},
+  },
+  mounted() {
+    this.fetchData(this.pager);
   },
 };
 </script>

@@ -155,15 +155,13 @@ export default {
         }
       });
     },
-    methods: {
-      // 禁止输入特殊字符
-      btKeyUpUsername(e) {
-        e.target.value = e.target.value.replace(
-          /[`~!#$%^&*()_=<>?:"{}|~！#￥%……&*（）={}|《》？：“”【】、；‘’，。、\s+]/g,
-          ""
-        );
-        this.inspectionRecord.description = e.target.value;
-      },
+    // 禁止输入特殊字符
+    btKeyUpUsername(e) {
+      e.target.value = e.target.value.replace(
+        /[`~!#$%^&*()_=<>?:"{}|~！#￥%……&*（）={}|《》？：“”【】、；‘’，。、\s+]/g,
+        ""
+      );
+      this.inspectionRecord.description = e.target.value;
     },
     //关闭弹窗
     handleCancel() {
