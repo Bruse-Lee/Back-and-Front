@@ -67,13 +67,13 @@ export default {
         username: this.loginForm.username,
         password: this.loginForm.password,
       };
-      console.log(data);
+      // console.log(data);
       // 设置响应拦截器
       request.interceptors.response.use((response) => {
         response.headers.authorization = window.localStorage.getItem("token");
         // 拦截器已经拦截获取了响应数据里后端返回的对象
         let result = response.data;
-        console.log(result);
+        // console.log(result);
         return result;
       }),
         (err) => {
@@ -81,8 +81,8 @@ export default {
         };
       request.post("/api/login", data).then((res) => {
         //所以此处打印的是用户状态信息
-        console.log(res.data);
-        console.log(res);
+        // console.log(res.data); 
+        // console.log(res);
         if (res.code === 200) {
           this.$message({
             message: "登陆成功!",

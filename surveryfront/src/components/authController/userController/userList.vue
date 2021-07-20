@@ -3,18 +3,19 @@
     <el-card class="box-card" style="height: 70px">
       <el-form :inline="true" :model="formInline" class="demo-form-inline">
         <el-input
-          v-model="formInline.user"
+          v-model="searchText"
           placeholder="Search..."
           class="search"
+          @keyup.enter="onSearch"
         ></el-input>
         &nbsp;
         <el-button
           type="primary"
-          @click="onSubmit"
+          :click="onSearch"
           class="el-icon-search"
         ></el-button>
         &nbsp;
-        <el-button @click="editAddUser()" type="primary" size="stander"
+        <el-button @click="editAddUsemr()" type="primary" size="stander"
           ><i class="el-icon-circle-plus-outline">添加用户</i>
         </el-button>
         <AddUser
@@ -96,8 +97,8 @@
       >
       </el-pagination>
     </div>
-    <!-- 增加和修改需要使用的模态框 -->
-    <el-dialog title="用户信息" :visible.sync="dialogFormVisible" width="120">
+    <!-- 修改需要使用的模态框 -->
+    <el-dialog title="用户信息" :visible.sync="dialogFormVisible">
       <el-form :model="formData">
         <el-form-item label="用户名" label-width="60px">
           <el-input v-model="formData.username" autocomplete="off"></el-input>
@@ -121,6 +122,8 @@ export default {
   data() {
     return {
       tableData: [],
+      searchList: [],
+      searchText: "",
       //默认为false，Dialog不显示
       addUserVisible: false,
       pager: {
@@ -196,6 +199,10 @@ export default {
     },
     // 拉取数据方法
     fetchData(pager) {
+      if (!pager) {
+        pager = 1;
+        this.currentIndex = 1;
+      }
       GetList(pager)
         .then(({ data }) => {
           let res = data.data;
@@ -258,7 +265,34 @@ export default {
       }
       // console.log(id);
     },
-    onSubmit() {},
+  },
+  computed: {
+    // 搜索框
+    onSearch: function () {
+      var arr = this.tableData,
+        searchText = this.searchText;
+      // console.log(arr);
+      // console.log(searchText);
+      if (!searchText) {
+        return arr;
+      }
+      searchText = searchText.trim();
+
+      arr = arr.filter(
+        (item) =>
+          // var result = item.username;
+          // 模糊查询
+          item.username.indexOf(this.searchText) !== -1
+        // 精确查询
+        // return result.match(searchText);
+      );
+      console.log(arr);
+      // this.tableData = arr;
+      return arr;
+    },
+  },
+  created() {
+    this.tableData = this.arr;
   },
   mounted() {
     this.fetchData(this.pager);
