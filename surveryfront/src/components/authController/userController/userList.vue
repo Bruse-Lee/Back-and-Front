@@ -169,8 +169,8 @@ export default {
             type: "success",
           });
           this.addUserVisible = false;
-          this.reload();
-        } else if (res.data.code === 104) {
+          // this.reload();
+        } else if (res.data.code === 1000) {
           // alert("请输入正确的用户名或密码!");
           this.$confirm("请输入正确的用户名或密码!", "提示", {
             confirmButtonText: "确定",
@@ -186,7 +186,7 @@ export default {
     handlePageIndexChange(val) {
       this.pager.pageIndex = val;
       this.fetchData(this.pager);
-      console.log(val);
+      // console.log(val);
     },
     // 改变页大小后，重新拉取数据
     handlePageSizeChange(val) {
@@ -222,14 +222,20 @@ export default {
     handleSave() {
       this.dialogFormVisible = false;
       changeInfo(this.formData.id, this.formData).then(({ data }) => {
-        console.log(data);
+        // console.log(data);
         if (data.code === 104) {
+          this.$confirm("用户名已存在!", "提示", {
+            confirmButtonText: "确定",
+            cancelButtonText: "取消",
+            type: "warning",
+          });
+        } else {
+          this.$message({
+            message: "修改成功!",
+            type: "success",
+          });
+          this.tableData.splice(this.currentIndex, 1, data.data);
         }
-        this.$message({
-          message: "修改成功!",
-          type: "success",
-        });
-        this.tableData.splice(this.currentIndex, 1, data.data);
       });
     },
     async handleDelete(index, id) {
@@ -250,7 +256,7 @@ export default {
       } else {
         this.$message.info("取消删除!");
       }
-      console.log(id);
+      // console.log(id);
     },
     onSubmit() {},
   },
