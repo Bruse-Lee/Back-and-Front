@@ -17,11 +17,11 @@
         <el-button @click="editAddUser()" type="primary" size="stander"
           ><i class="el-icon-circle-plus-outline">添加用户</i>
         </el-button>
-        <AddUser
+        <!-- <AddUser
           :addUserVisible="addUserVisible"
           @val-change="addUser"
           @cancel="addUserVisible = false"
-        ></AddUser>
+        ></AddUser> -->
       </el-form>
     </el-card>
     &nbsp;
@@ -58,8 +58,8 @@
         align="center"
       ></el-table-column>
       <el-table-column
-        prop="updateTime"
-        label="更新时间"
+        prop="remark"
+        label="备注"
         width="300"
         align="center"
       ></el-table-column>
@@ -86,9 +86,9 @@
     </el-table>
     <div class="block">
       <el-pagination
-        @size-change="handleSizeChange"
-        @current-change="handleCurrentChange"
-        :current-page="currentPage4"
+        @size-change="handlePageSizeChange"
+        @current-change="handlePageIndexChange"
+        :current-page="pager.pageSize"
         :page-size="pager.pageIndex"
         layout="total, sizes, prev, pager, next, jumper"
         :total="pager.rowsTotal"
@@ -100,33 +100,27 @@
 
 <script>
 import { GetList, deleteById, newUser } from "../../../api/user";
-import AddUser from "./add.vue";
+// import AddUser from "./add.vue";
 export default {
-  mounted: function () {
-    GetList().then((res) => {
-      this.tableData = res.data.data;
-      console.log(res.data.data);
-    });
-  },
   data() {
     return {
-      tableData: null,
+      tableData: [],
       //默认为false，Dialog不显示
       addUserVisible: false,
-      formInline: {
-        user: "",
-        region: "",
-      },
       pager: {
         pageIndex: 1,
         pageSize: 10,
         rowsTotal: 50,
       },
+      formInline: {
+        user: "",
+        region: "",
+      },
     };
   },
-  components: {
-    AddUser,
-  },
+  // components: {
+  //   AddUser,
+  // },
   // 注入reload方法
   // 这样就实现了子组件调取reload方法就实现了刷新vue组件的功能,这样应该是它实现了组件跨越组件传递数据方法。
   inject: ["reload"],
@@ -158,6 +152,33 @@ export default {
       });
 
       APP.addUserVisible = true;
+    },
+    // 改变页码后，重新拉取数据
+    handlePageIndexChange(val) {
+      this.pager.pageIndex = val;
+      this.fetchData(this.pager);
+      console.log(val);
+    },
+    // 改变页大小后，重新拉取数据
+    handlePageSizeChange(val) {
+      this.pager.pageSize = val;
+      this.fetchData(this.pager);
+      console.log(val);
+    },
+    // 拉取数据方法
+    fetchData(pager) {
+      GetList(pager)
+        .then(({ data }) => {
+          let res = data.data;
+          this.tableData = res.data;
+          this.pager = res.pager;
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    },
+    mounted() {
+      this.fetchData(this.pager);
     },
 
     handleEdit(index, row) {

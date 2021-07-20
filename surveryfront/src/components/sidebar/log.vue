@@ -83,7 +83,7 @@
 
 <script>
 // import GetList from "../../api/user";
-import { getAudit } from "../../api/log";
+// import { getAudit } from "../../api/log";
 export default {
   data() {
     return {
@@ -107,25 +107,27 @@ export default {
     handlePageIndexChange(val) {
       this.pager.pageIndex = val;
       this.fetchData(this.pager);
+      console.log(val);
     },
     // 改变页大小后，重新拉取数据
     handlePageSizeChange(val) {
       this.pager.pageSize = val;
       this.fetchData(this.pager);
+      console.log(val);
     },
     // 拉取数据方法
-    fetchData(pager) {
-      getAudit(pager)
-        .then(({ data }) => {
-          let res = data.data;
-          console.log(res);
-          this.tableData = res.data;
-          this.pager = res.pager;
-        })
-        .catch((err) => {
-          console.log(err);
-        });
-    },
+    // fetchData(pager) {
+      // getAudit(pager)
+      //   .then(({ data }) => {
+      //     let res = data.data;
+      //     console.log(res);
+      //     this.tableData = res.data;
+      //     this.pager = res.pager;
+      //   })
+      //   .catch((err) => {
+      //     console.log(err);
+      //   });
+    // },
   },
   mounted() {
     this.fetchData(this.pager);

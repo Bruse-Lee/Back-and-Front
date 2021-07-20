@@ -24,7 +24,7 @@ namespace ContosoPizza.Controllers
         private TokenParameter _tokenParameter;
 
         // 依赖注入
-        public UserController(IConfiguration configuration, IRepository<User> userRepository,IRepository<AuditInfo> auditInfo)
+        public UserController(IConfiguration configuration, IRepository<User> userRepository, IRepository<AuditInfo> auditInfo)
         {
             _configuration = configuration;
             _userRepository = userRepository;
@@ -34,17 +34,22 @@ namespace ContosoPizza.Controllers
 
         // GET all action
         [HttpGet]
-        public dynamic Get()
+        public dynamic Get([FromQuery] Pager pager)
         {
 
-            var user = _userRepository.Table.ToList();
+            // get请求默认从url中获取参数，如果需要使用实体接收参数，需要FromQuery特性
+            var pageIndex = pager.PageIndex;
+            var pageSize = pager.PageSize;
+
+            var user = _userRepository.Table;
+            var padingUser = user.Skip((pageIndex - 1) * pageSize).Take(pageSize).ToList();
             if (user == null)
                 return NotFound();
 
             var res = new
             {
                 Code = 200,
-                Data = user,
+                Data = new { Data = padingUser, Pager = new { pageIndex, pageSize, rowsTotal = user.Count() } },
                 Msg = "获取列表成功！"
             };
 
@@ -75,14 +80,15 @@ namespace ContosoPizza.Controllers
         // 指定应用此属性的类或方法不需要授权。
         [Route("register")]
         [AllowAnonymous]
-        public dynamic Post([FromBody]UserCreate users)
+        public dynamic Post([FromBody] UserCreate users)
         {
             var username = users.username.Trim();
             var password = users.password.Trim();
 
             if (string.IsNullOrEmpty(username) || string.IsNullOrEmpty(password))
             {
-                return new{
+                return new
+                {
                     Code = 104,
                     Msg = "用户名不能为空!"
                 }; // 204 No Content：服务器成功处理了请求，但没返回任何内容
