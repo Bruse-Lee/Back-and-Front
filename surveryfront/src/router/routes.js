@@ -11,7 +11,7 @@ let routes = [
             title: "根目录",
             icon: 'bx bx-notification',
             style: 'color:#181818',
-            hidden: true,
+            // hidden: true,
         },
         children: [
             {

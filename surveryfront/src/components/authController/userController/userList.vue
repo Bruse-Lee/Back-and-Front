@@ -84,13 +84,14 @@
         </template>
       </el-table-column>
     </el-table>
+    <p></p>
     <div class="block">
       <el-pagination
         @size-change="handlePageSizeChange"
         @current-change="handlePageIndexChange"
         :current-page="pager.pageSize"
         :page-size="pager.pageIndex"
-        layout="total, sizes, prev, pager, next, jumper"
+        layout=" total,sizes, prev, pager, next, jumper"
         :total="pager.rowsTotal"
       >
       </el-pagination>
@@ -109,8 +110,8 @@ export default {
       addUserVisible: false,
       pager: {
         pageIndex: 1,
-        pageSize: 10,
-        rowsTotal: 20,
+        pageSize: 12,
+        rowsTotal: 100,
       },
       formInline: {
         user: "",
@@ -170,6 +171,7 @@ export default {
       GetList(pager)
         .then(({ data }) => {
           let res = data.data;
+          console.log(res);
           this.tableData = res.data;
           this.pager = res.pager;
         })

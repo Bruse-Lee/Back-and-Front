@@ -44,7 +44,7 @@ export default {
   data() {
     return {
       loginForm: {
-        // isLoging: false,
+        isLoging: false,
         username: "",
         password: "",
       },
@@ -71,7 +71,9 @@ export default {
       console.log(data);
       // 设置响应拦截器
       request.interceptors.response.use((response) => {
-        response.headers.Authorization = window.localStorage.getItem("token");
+        // var token = response.headers.authorization;
+
+        response.headers.authorization = window.localStorage.getItem("token");
         // 拦截器已经拦截获取了响应数据里的data（对象中的data）
         return response.data;
       }),
@@ -82,14 +84,18 @@ export default {
       //   if (!valid) return;
       request.post("/api/login", data).then((res) => {
         //所以此处打印的是用户状态信息
-        console.log(res);
         console.log(res.data);
+        console.log(res);
         if (res.code === 200) {
-          alert("登陆成功！");
-          // window.localStorage.setItem("token", res.data);
+          // alert("登陆成功！");
+          this.$message({
+            message: "登陆成功!",
+            type: "Success",
+          });
+          localStorage.setItem("token", res.data.token);
           this.$router.push("/");
         } else {
-          alert("用户名或密码错误,请重新尝试！");
+          this.$message.error("用户名或密码错误,请重新尝试！");
         }
       });
       // });
