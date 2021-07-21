@@ -33,6 +33,15 @@ export default {
       });
     },
   },
+  watch: {
+    $route: {
+      handler: function (now) {
+        document.getElementById("app").scrollTo(0, 0);
+        console.log(now.path);
+      },
+      deep: true,
+    },
+  },
 };
 </script>
 

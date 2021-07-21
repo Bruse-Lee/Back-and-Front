@@ -1,8 +1,11 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 import routes from './routes'
+import NProgress from 'nprogress'
+import 'nprogress/nprogress.css'
 
 Vue.use(VueRouter)
+
 
 let router = new VueRouter({
     mode: 'history',
@@ -15,7 +18,12 @@ router.beforeEach((to, from, next) => {
             return next('/login')
         }
     }
+    NProgress.start();
     next()
+})
+
+router.afterEach(() =>{
+    NProgress.done()
 })
 
 export default router

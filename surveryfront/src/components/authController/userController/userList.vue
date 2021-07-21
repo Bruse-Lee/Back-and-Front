@@ -15,7 +15,7 @@
           class="el-icon-search"
         ></el-button>
         &nbsp;
-        <el-button @click="editAddUsemr()" type="primary" size="stander"
+        <el-button @click="editAddUser()" type="primary" size="stander"
           ><i class="el-icon-circle-plus-outline">添加用户</i>
         </el-button>
         <AddUser
@@ -291,10 +291,9 @@ export default {
       return arr;
     },
   },
-  created() {
-    this.tableData = this.arr;
-  },
+  created() {},
   mounted() {
+    this.tableData = this.arr;
     this.fetchData(this.pager);
   },
 };
