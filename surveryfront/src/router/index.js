@@ -19,11 +19,13 @@ router.beforeEach((to, from, next) => {
         }
     }
     NProgress.start();
+    console.log("全局前置守卫");
     next()
 })
 
-router.afterEach(() =>{
+router.afterEach(() => {
     NProgress.done()
+    console.log("全局后置钩子");
 })
 
 export default router

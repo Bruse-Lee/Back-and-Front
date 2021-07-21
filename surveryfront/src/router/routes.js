@@ -32,7 +32,11 @@ let routes = [
                     icon: 'bx bxl-spring-boot',
                     style: 'color:#181818'
                 },
-                component: () => import('../components/sidebar/home')
+                component: () => import('../components/sidebar/home'),
+                beforeEnter(to, from, next) {
+                    console.log("首页路由独享的守卫：beforeEnter");
+                    next();
+                }
             },
             {
                 path: 'log',
@@ -74,7 +78,11 @@ let routes = [
                     icon: 'bx bxs-user-detail',
                     style: 'color:#181818'
                 },
-                component: userList
+                component: userList,
+                beforeEnter(to, from, next) {
+                    console.log("用户列表路由独享的守卫：beforeEnter");
+                    next();
+                }
             },
             {
                 path: 'addUser',

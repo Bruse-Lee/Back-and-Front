@@ -32,6 +32,7 @@
       border
       class="elTable"
       highlight-current-row
+      
     >
       <el-table-column
         fixed
@@ -117,7 +118,13 @@
 
 <script>
 import { GetList, deleteById, newUser, changeInfo } from "../../../api/user";
+import Vue from 'vue'
 import AddUser from "./add.vue";
+import NProgress from "nprogress";
+import "nprogress/nprogress.css";
+
+const state = Vue.observable(NProgress);
+
 export default {
   data() {
     return {
@@ -142,6 +149,7 @@ export default {
       },
       currentIndex: 0,
       dialogFormVisible: false,
+      state
     };
   },
   components: {
@@ -293,8 +301,12 @@ export default {
   },
   created() {},
   mounted() {
-    this.tableData = this.arr;
-    this.fetchData(this.pager);
+    NProgress.start();
+    setTimeout(()=>{
+      this.fetchData(this.pager);
+      NProgress.done();
+    },3000)
+    // this.tableData = this.arr;
   },
 };
 </script>

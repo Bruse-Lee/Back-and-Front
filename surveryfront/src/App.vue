@@ -1,10 +1,14 @@
 <template>
   <div id="app">
-    <router-view v-if="isRouterAlive"></router-view>
+    
+    <router-view v-if="isRouterAlive"> 
+      
+    </router-view>
   </div>
 </template>
 
 <script>
+
 export default {
   name: "app",
   // provide与inject:使用场景：
@@ -23,6 +27,7 @@ export default {
     };
   },
   components: {
+    
     // HelloWorld
   },
   methods: {
@@ -47,15 +52,11 @@ export default {
 
 <style>
 #app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
+  font-family: "Nunito", sans-serif;
   -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-
-  /* margin: 0%;
-  padding: 0%;
-  margin-left: 0px;
-  margin-top: 0px;
-  margin-right: 0px;
-  margin-bottom: 0px; */
+  /* -moz-osx-font-smoothing: grayscale; */
+}
+#nprogress .bar {
+  background: #c44569 !important;
 }
 </style>

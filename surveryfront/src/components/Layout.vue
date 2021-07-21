@@ -9,6 +9,8 @@
           <a href="#"
             ><i class="bx bx-menu" :class="iconTurn" @click="handleCollapse"></i
           ></a>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+          <header-bar></header-bar>
         </el-header>
         <el-main>
           <router-view></router-view>
@@ -23,11 +25,13 @@
 </template>
 
 <script>
+import headerBar from './headNavbar/headBar.vue'
 import Sidebar from "../components/sidebar/sidebar.vue";
 import routes from "../router/routes";
 export default {
   components: {
     Sidebar,
+    headerBar
   },
   data() {
     return {

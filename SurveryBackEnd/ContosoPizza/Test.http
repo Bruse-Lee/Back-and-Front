@@ -36,8 +36,8 @@ POST http://localhost:5000/user/RequestToken
 Content-Type: application/json
 
 {
-    "Username":"测试用户8",
-    "Password": "188"
+    "Username":"User",
+    "Password": "123"
 }
 
 ### Token验证
