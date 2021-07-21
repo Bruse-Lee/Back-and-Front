@@ -7,6 +7,8 @@ using ContosoPizza.Utils;
 using ContosoPizza.Token;
 using Microsoft.Extensions.Configuration;
 using Microsoft.AspNetCore.Authorization;
+using ContosoPizza.ApiFilter;
+
 
 namespace ContosoPizza.Controllers
 {
@@ -45,6 +47,7 @@ namespace ContosoPizza.Controllers
             var padingUser = user.Skip((pageIndex - 1) * pageSize).Take(pageSize).ToList();
             if (user == null)
                 return NotFound();
+                
 
             var res = new
             {

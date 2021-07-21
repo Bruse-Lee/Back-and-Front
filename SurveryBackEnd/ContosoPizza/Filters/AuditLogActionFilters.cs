@@ -157,5 +157,5 @@ namespace ContosoPizza.Filters
             // }
             return true;
         }
-    }
+}
 }
