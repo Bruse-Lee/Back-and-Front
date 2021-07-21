@@ -1,11 +1,10 @@
 <template>
   <div class="icon">
-    
-      <icon-scissors />
-      <icon-heart-face />
-      <icon-watch />
-      <icon-palette />
-    
+    <icon-scissors />
+    <icon-heart-face />
+    <icon-watch />
+    <icon-palette />
+    <h1>千万别碰他们哟~他们会有反应哒!</h1>
   </div>
 </template>
 
@@ -29,9 +28,11 @@ export default {
 svg {
   cursor: pointer;
 }
-.icon{
-  
+.icon {
   margin-left: 35%;
-
+}
+h1 {
+  font-weight: 900;
+  font-family: fantasy;
 }
 </style>

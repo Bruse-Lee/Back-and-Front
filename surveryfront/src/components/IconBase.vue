@@ -9,6 +9,7 @@
     <title :id="iconName" lang="en">{{iconName}} icon</title>
     <g :fill="iconColor">
       <slot />
+      
     </g>
   </svg>
 </template>
@@ -42,4 +43,5 @@ svg {
   vertical-align: baseline;
   margin-bottom: -2px; /* yes, I'm that particular about formatting */
 }
+
 </style>

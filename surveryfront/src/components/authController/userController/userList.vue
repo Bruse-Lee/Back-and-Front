@@ -11,7 +11,7 @@
         &nbsp;
         <el-button
           type="primary"
-          @click="onSearch()"
+          v-model="onSearch"
           class="el-icon-search"
         ></el-button>
         &nbsp;
@@ -127,15 +127,15 @@ const state = Vue.observable(NProgress);
 export default {
   data() {
     return {
-      tableData: [],
+      tableData: null,
       searchList: [],
       searchText: "",
       //默认为false，Dialog不显示
       addUserVisible: false,
       pager: {
         pageIndex: 1,
-        pageSize: 12,
-        rowsTotal: 100,
+        pageSize: 20,
+        rowsTotal: this.tableData,
       },
       formInline: {
         user: "",
@@ -146,7 +146,7 @@ export default {
         username: "",
         password: "",
       },
-      currentIndex: 0,
+      currentIndex: 1,
       dialogFormVisible: false,
       state,
     };
@@ -207,13 +207,12 @@ export default {
     // 拉取数据方法
     fetchData(pager) {
       if (!pager) {
-        pager = 1;
+        pager.index = 1;
         this.currentIndex = 1;
       }
       GetList(pager)
         .then(({ data }) => {
           let res = data.data;
-          // console.log(res.data);
           this.tableData = res.data;
           this.pager = res.pager;
         })
@@ -272,26 +271,26 @@ export default {
       }
       // console.log(id);
     },
-    onSearch: function () {
-      let search = this.searchText;
-      let olddatas = this.tableData;
-      if (search == "") {
-        olddatas;
-      } else {
-        this.tableData = this.tableData.filter((item) => {
-          console.log("过滤", item);
-          let searchField = {
-            username: item.username,
-          };
-          return Object.keys(searchField).some(function (key) {
-            console.log("key值", key);
-            return String(item[key]).toLowerCase().indexOf(search) > -1;
-          });
-        });
-      }
-      return olddatas;
-    },
-  
+    // onSearch: function () {
+    //   let search = this.searchText;
+    //   let olddatas = this.tableData;
+    //   if (search == "") {
+    //     olddatas;
+    //   } else {
+    //     this.tableData = this.tableData.filter((item) => {
+    //       console.log("过滤", item);
+    //       let searchField = {
+    //         username: item.username,
+    //       };
+    //       return Object.keys(searchField).some(function (key) {
+    //         console.log("key值", key);
+    //         return String(item[key]).toLowerCase().indexOf(search) > -1;
+    //       });
+    //     });
+    //   }
+    //   return olddatas;
+    // },
+
     // onSearch: function () {
     //   var arr = this.tableData,
     //     searchText = this.searchList;
@@ -315,29 +314,25 @@ export default {
     //   // this.tableData = arr;
     // },
   },
-  // computed: {
-  //     // 搜索框
-  //     onSearch(){
-  //       var arr = this.tableData,
-  //         searchText = this.searchText;
-  //       // console.log(arr);
-  //       // console.log(searchText);
-  //       if (!searchText) {
-  //         return arr;
-  //       }
-  //       searchText = searchText.trim();
-  //       arr = arr.filter(
-  //         (item) =>
-  //           // var result = item.username;
-  //           // 模糊查询
-  //           item.username.indexOf(this.searchText) !== -1
-  //         // 精确查询
-  //         // return result.match(searchText);
-  //       );
-  //       console.log(arr);
-  //       return arr;
-  //       // this.tableData = arr;
-  //     },
+  computed: {
+    // 搜索框
+    onSearch() {
+      var arr = this.tableData,
+        searchText = this.searchText;
+      // console.log(arr);
+      // console.log(searchText);
+      if (!searchText) {
+        return arr;
+      }
+      searchText = searchText.trim();
+      arr = arr.filter(
+        (item) =>
+          // 模糊查询
+          item.username.indexOf(this.searchText) !== -1
+      );
+      console.log(arr);
+      return arr;
+    },
     // onSearch: function () {
     //   let search = this.searchText;
     //   let olddatas = this.tableData;
@@ -357,7 +352,7 @@ export default {
     //   }
     //   return this.tableData;
     // },
-  // },
+  },
   created() {
     this.tableData = this.arr;
   },

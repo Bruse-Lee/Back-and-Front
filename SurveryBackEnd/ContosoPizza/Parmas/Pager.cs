@@ -1,4 +1,5 @@
-namespace ContosoPizza.Parmas{
+namespace ContosoPizza.Parmas
+{
     public class Pager
     {
         // 页码（当前第几页）

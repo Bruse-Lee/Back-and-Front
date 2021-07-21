@@ -14,7 +14,7 @@ export default {
 </script>
 
 <style>
-.index {
-  /* background-image: url("../../../src/imgs/Foreast.jpg"); */
-}
+/* .index {
+  background-image: url("../../../src/imgs/Foreast.jpg");
+} */
 </style>
