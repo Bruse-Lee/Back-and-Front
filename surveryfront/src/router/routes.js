@@ -39,6 +39,16 @@ let routes = [
                 }
             },
             {
+                path:'carousel',
+                name:'carousel',
+                meta:{
+                    title:"走马灯",
+                    icon:'bx bxl-firebase',
+                    style:'color:#484747'
+                },
+                component:()=>import('../components/sidebar/carousel')
+            },
+            {
                 path: 'log',
                 name: 'log',
                 meta: {
