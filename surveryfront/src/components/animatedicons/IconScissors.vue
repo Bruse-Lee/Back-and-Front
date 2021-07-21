@@ -8,7 +8,7 @@
     role="presentation"
     >
     <title id="scissors" lang="en">Scissors Animated Icon</title>
-    <path id="bk" fill="#fff" d="M0 0h100v100H0z"/>
+    <path id="bk" fill="#DFF9FB" d="M0 0h100v100H0z"/>
     <g ref="leftscissor">
       <path d="M57.6 47h-8.7v4.7H53l1.5 45h1.1a24.9 24.9 0 0 0 2-49.7zm1.5 45l-1.5-40.4a20.3 20.3 0 0 1 18.3 20.2c0 10.5-6.5 19.2-16.8 20.2z" fill="#30374b"/>
       <path d="M53.9 50.7l1.5 45.1h.2a24 24 0 0 0 1.9-47.9h-8v2.9zm3.8 0a21.1 21.1 0 0 1 19.1 21.1c0 11.4-7.2 20.1-17.6 21.1h-.9l-1.6-42.3z" fill="none"/>

@@ -6,12 +6,12 @@
           v-model="searchText"
           placeholder="Search..."
           class="search"
-          @keyup.enter="onSearch"
+          @keypress.enter="onSearch"
         ></el-input>
         &nbsp;
         <el-button
           type="primary"
-          :click="onSearch"
+          @click="onSearch()"
           class="el-icon-search"
         ></el-button>
         &nbsp;
@@ -32,7 +32,6 @@
       border
       class="elTable"
       highlight-current-row
-      
     >
       <el-table-column
         fixed
@@ -118,7 +117,7 @@
 
 <script>
 import { GetList, deleteById, newUser, changeInfo } from "../../../api/user";
-import Vue from 'vue'
+import Vue from "vue";
 import AddUser from "./add.vue";
 import NProgress from "nprogress";
 import "nprogress/nprogress.css";
@@ -149,7 +148,7 @@ export default {
       },
       currentIndex: 0,
       dialogFormVisible: false,
-      state
+      state,
     };
   },
   components: {
@@ -273,39 +272,101 @@ export default {
       }
       // console.log(id);
     },
-  },
-  computed: {
-    // 搜索框
     onSearch: function () {
-      var arr = this.tableData,
-        searchText = this.searchText;
-      // console.log(arr);
-      // console.log(searchText);
-      if (!searchText) {
-        return arr;
+      let search = this.searchText;
+      let olddatas = this.tableData;
+      if (search == "") {
+        olddatas;
+      } else {
+        this.tableData = this.tableData.filter((item) => {
+          console.log("过滤", item);
+          let searchField = {
+            username: item.username,
+          };
+          return Object.keys(searchField).some(function (key) {
+            console.log("key值", key);
+            return String(item[key]).toLowerCase().indexOf(search) > -1;
+          });
+        });
       }
-      searchText = searchText.trim();
-
-      arr = arr.filter(
-        (item) =>
-          // var result = item.username;
-          // 模糊查询
-          item.username.indexOf(this.searchText) !== -1
-        // 精确查询
-        // return result.match(searchText);
-      );
-      console.log(arr);
-      // this.tableData = arr;
-      return arr;
+      return olddatas;
     },
+  
+    // onSearch: function () {
+    //   var arr = this.tableData,
+    //     searchText = this.searchList;
+
+    //   // console.log(arr);
+    //   // console.log(searchText);
+    //   if (!searchText) {
+    //     return arr;
+    //   }
+    //   // searchText = searchText.trim();
+    //   arr = arr.filter(
+    //     (item) =>
+    //       // var result = item.username;
+    //       // 模糊查询
+    //       item.username.indexOf(searchText) !== -1
+    //     // 精确查询
+    //     // return result.match(searchText);
+    //   );
+    //   console.log(arr);
+    //   return arr;
+    //   // this.tableData = arr;
+    // },
   },
-  created() {},
+  // computed: {
+  //     // 搜索框
+  //     onSearch(){
+  //       var arr = this.tableData,
+  //         searchText = this.searchText;
+  //       // console.log(arr);
+  //       // console.log(searchText);
+  //       if (!searchText) {
+  //         return arr;
+  //       }
+  //       searchText = searchText.trim();
+  //       arr = arr.filter(
+  //         (item) =>
+  //           // var result = item.username;
+  //           // 模糊查询
+  //           item.username.indexOf(this.searchText) !== -1
+  //         // 精确查询
+  //         // return result.match(searchText);
+  //       );
+  //       console.log(arr);
+  //       return arr;
+  //       // this.tableData = arr;
+  //     },
+    // onSearch: function () {
+    //   let search = this.searchText;
+    //   let olddatas = this.tableData;
+    //   if (search == "") {
+    //     this.tableData = olddatas;
+    //   } else {
+    //     this.tableData = this.tableData.filter((item) => {
+    //       console.log("过滤", item);
+    //       let searchField = {
+    //         username: item.username,
+    //       };
+    //       return Object.keys(searchField).some(function (key) {
+    //         console.log("key值", key);
+    //         return String(item[key]).toLowerCase().indexOf(search) > -1;
+    //       });
+    //     });
+    //   }
+    //   return this.tableData;
+    // },
+  // },
+  created() {
+    this.tableData = this.arr;
+  },
   mounted() {
     NProgress.start();
-    setTimeout(()=>{
+    setTimeout(() => {
       this.fetchData(this.pager);
       NProgress.done();
-    },3000)
+    }, 2000);
     // this.tableData = this.arr;
   },
 };

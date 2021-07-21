@@ -15,7 +15,7 @@
         <stop offset="1" stop-color="#fcd25c"/>
       </linearGradient>
     </defs>
-    <path ref="bk" fill="#fff" d="M0 0h120v120H0z"/>
+    <path ref="bk" fill="#DFF9FB" d="M0 0h120v120H0z"/>
     <g ref="originalface">
       <circle cx="65.1" cy="59.9" r="43.4" fill="url(#linear-gradient)"/>
       <path d="M49.5 94.6a44.8 44.8 0 1 1 44.8-44.7 44.8 44.8 0 0 1-44.8 44.7zm0-86.7a42 42 0 1 0 42 42 42 42 0 0 0-42-42z" transform="translate(10 10)" fill="#7f756b"/>

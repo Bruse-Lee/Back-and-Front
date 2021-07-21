@@ -18,17 +18,17 @@ export default {
         {
           key: "Photo",
           url: require("../../imgs/keyboard.png"),
-          desc: "史努比的小丫丫",
+          desc: "keyboardHander",
         },
         {
           key: "Photo2",
           url: require("../../imgs/Foreast.jpg"),
-          desc: "史努比的小丫丫",
+          desc: "Foreast",
         },
         {
           key: "Photo3",
           url: require("../../imgs/Scar.jpg"),
-          desc: "史努比的小丫丫",
+          desc: "Scar",
         },
       ],
     };

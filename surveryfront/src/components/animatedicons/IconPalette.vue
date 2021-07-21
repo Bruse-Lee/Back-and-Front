@@ -9,7 +9,7 @@
     role="presentation"
     >
     <title id="palette" lang="en">Animated Color palette</title>
-    <path id="bk" fill="#fff" d="M0 0h100v100H0z"/>
+    <path id="bk" fill="#DFF9FB" d="M0 0h100v100H0z"/>
     <g id="palette">
       <g ref="dark">
         <path transform="rotate(-64.1 71.508 54.997)" fill="#fff" d="M33.3 42.8h76.3v24.23H33.3z"/>
