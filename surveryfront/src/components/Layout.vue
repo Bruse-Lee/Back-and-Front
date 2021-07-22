@@ -9,7 +9,20 @@
           <a href="#"
             ><i class="bx bx-menu" :class="iconTurn" @click="handleCollapse"></i
           ></a>
-          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+          <el-breadcrumb separator-class="el-icon-arrow-right">
+            <el-breadcrumb-item :to="{ path: '/dashboard' }"
+              >仪表盘</el-breadcrumb-item
+            >
+            <el-breadcrumb-item :to="{ path: '/home' }"
+              >首页</el-breadcrumb-item
+            >
+            <el-breadcrumb-item :to="{ path: '/userController/userList' }"
+              >用户列表</el-breadcrumb-item
+            >
+            <el-breadcrumb-item :to="{ path: '/personalCenter/profile' }"
+              >个人信息</el-breadcrumb-item
+            >
+          </el-breadcrumb>
           <header-bar></header-bar>
         </el-header>
         <el-main>
@@ -25,13 +38,13 @@
 </template>
 
 <script>
-import headerBar from './headNavbar/headBar.vue'
+import headerBar from "./headNavbar/headBar.vue";
 import Sidebar from "../components/sidebar/sidebar.vue";
 import routes from "../router/routes";
 export default {
   components: {
     Sidebar,
-    headerBar
+    headerBar,
   },
   data() {
     return {
@@ -56,14 +69,13 @@ export default {
 
         if (obj.children && obj.children.length > 0) {
           obj.children = this.resolve(obj.children, obj.path);
-        // } else if (obj.meta.hidden) {
-        //   obj.children.forEach((item) => {
-        //     let temple = Object.assign({}, item);
-        //     newArr.push(temple);
-        //   });
+          // } else if (obj.meta.hidden) {
+          //   obj.children.forEach((item) => {
+          //     let temple = Object.assign({}, item);
+          //     newArr.push(temple);
+          //   });
         }
-          newArr.push(obj);
-      
+        newArr.push(obj);
       });
       return newArr;
     },

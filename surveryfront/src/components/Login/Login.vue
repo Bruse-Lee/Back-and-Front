@@ -57,7 +57,7 @@ export default {
       if (this.loginForm.username != "" && this.loginForm.password != "") {
         this.toLogin();
       } else {
-        alert("用户名或密码不能为空");
+       this.$message.error("用户名和密码不能为空!")
       }
     },
 
@@ -67,7 +67,6 @@ export default {
         username: this.loginForm.username,
         password: this.loginForm.password,
       };
-      // console.log(data);
       // 设置响应拦截器
       request.interceptors.response.use((response) => {
         response.headers.authorization = window.localStorage.getItem("token");
