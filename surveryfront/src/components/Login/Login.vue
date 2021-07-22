@@ -38,13 +38,14 @@
 
 
 <script>
+import Cookies from 'js-cookie'
 import request from "../../utils/request";
 export default {
   name: "Login",
   data() {
     return {
       loginForm: {
-        isLoging: false,
+        // isLoging: false,
         username: "",
         password: "",
       },
@@ -63,6 +64,7 @@ export default {
 
     // 登录请求
     toLogin() {
+      
       let data = {
         username: this.loginForm.username,
         password: this.loginForm.password,
@@ -78,6 +80,7 @@ export default {
         (err) => {
           console.log(err);
         };
+        Cookies.set('username',this.loginForm.username)
       request.post("/api/login", data).then((res) => {
         //所以此处打印的是用户状态信息
         // console.log(res.data); 

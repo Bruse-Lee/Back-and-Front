@@ -4,7 +4,7 @@
     <el-dropdown @command="handleCommand" class="drop"
       ><!--  绑定指令,在methods里定义-->
       <span class="el-dropdown-link">
-        您好
+        您好:  {{showUsername}}
         <i class="el-icon-arrow-down el-icon--right"></i>
       </span>
       <div></div>
@@ -37,9 +37,11 @@
 
 
 <script>
+import Cookies from 'js-cookie'
 export default {
   data() {
     return {
+      username:null,
       centerDialogVisible: false,
     };
   },
@@ -66,6 +68,11 @@ export default {
       this.centerDialogVisible = false;
     },
   },
+  computed:{
+    showUsername(){
+      return Cookies.get('username')
+    }
+  }
 };
 </script>
 
