@@ -24,3 +24,8 @@ export function changeInfo(id,params) {
 export function newUser(data) {
     return request.post("/user/register", data)
 }
+
+// 注销
+// export function logout(token){
+//     return request
+// }

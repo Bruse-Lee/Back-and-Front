@@ -82,13 +82,14 @@ export default {
       request.post("/api/login", data).then((res) => {
         //所以此处打印的是用户状态信息
         // console.log(res.data); 
-        // console.log(res);
+        console.log(res);
         if (res.code === 200) {
           this.$message({
             message: "登陆成功!",
             type: "success",
           });
           localStorage.setItem("token", res.data.token);
+          localStorage.setItem("refreshToken",res.data.refreshToken);
           this.$router.push("/");
         } else {
           this.$message.error("用户名或密码错误,请重新尝试！");

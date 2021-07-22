@@ -96,6 +96,7 @@ body {
   display: flex;
   align-items: center;
   background-color: #c7ecee;
+  justify-content: space-between;
   /* overflow: unset; */
   position: relative;
   box-shadow: 0px 1px 0px 0px #badc58;
