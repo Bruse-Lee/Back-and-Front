@@ -39,24 +39,45 @@ namespace ContosoPizza.Controllers
         public dynamic Get([FromQuery] Pager pager)
         {
 
+            // var searchText = pager.searchText;
             // get请求默认从url中获取参数，如果需要使用实体接收参数，需要FromQuery特性
             var pageIndex = pager.PageIndex;
             var pageSize = pager.PageSize;
 
             var user = _userRepository.Table;
             var padingUser = user.Skip((pageIndex - 1) * pageSize).Take(pageSize).ToList();
+
+
+
             if (user == null)
                 return NotFound();
-                
 
+            // if (searchText == "")
+            // {
             var res = new
             {
                 Code = 200,
                 Data = new { Data = padingUser, Pager = new { pageIndex, pageSize, rowsTotal = user.Count() } },
                 Msg = "获取列表成功！"
             };
-
             return JsonHelper.Serialize(res);
+            // }
+
+            // var isSearchText = user.Where(x => x.Username.Contains(searchText)).ToList();
+
+            // var result = new
+            // {
+            //     Code = 200,
+            //     Data = new { Data = padingUser, Pager = new { searchText = isSearchText, pageIndex, pageSize, rowsTotal = user.Count() } },
+            //     Msg = "获取成功!"
+            // };
+
+            // return result;
+
+
+
+
+
         }
 
 
@@ -144,16 +165,18 @@ namespace ContosoPizza.Controllers
 
             var user = _userRepository.GetById(id);
 
-            if (user != null)
-            {
-                return new
-                {
-                    Code = 104,
-                    Data = "",
-                    Msg = "用户名已存在,请确认后重试！"
-                };
 
-            }
+
+            // if (user != null)
+            // {
+            //     return new
+            //     {
+            //         Code = 104,
+            //         Data = "",
+            //         Msg = "用户名已存在,请确认后重试！"
+            //     };
+
+            // }
 
             user.Username = updateuser.username;
             user.Password = updateuser.password;
@@ -168,6 +191,47 @@ namespace ContosoPizza.Controllers
             };
 
         }
+
+        // [HttpPut("{id}")]
+        // [Route("user/changePwd")]
+        // public dynamic ChangePassword(int id, PasswordInfo PasswordInfo)
+        // {
+        //     var OldPwd = PasswordInfo.oldPassword.Trim();
+        //     var NewPwd = PasswordInfo.newPassword.Trim();
+        //     var user = _userRepository.GetById(73);
+
+        //     if (string.IsNullOrEmpty(OldPwd) || string.IsNullOrEmpty(NewPwd))
+        //     {
+        //         return new
+        //         {
+        //             Code = 1000,
+        //             Data = "",
+        //             Msg = "原密码与新密码不能为空,请确认后重试！"
+        //         };
+        //     }
+        //     else if (user.Password != OldPwd)
+        //     {
+        //         return new
+        //         {
+        //             Code = 1000,
+        //             Data = "",
+        //             Msg = "原密码错误,请确认后重试!"
+        //         };
+        //     }
+
+        //     if (user != null)
+        //     {
+        //         user.Password = PasswordInfo.newPassword;
+        //         _userRepository.Update(user);
+        //     }
+
+        //     return new
+        //     {
+        //         Code = 200,
+        //         Data = user,
+        //         Msg = "修改密码成功!"
+        //     };
+        // }
 
 
         [HttpDelete("{id}")]

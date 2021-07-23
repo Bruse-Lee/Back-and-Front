@@ -1,5 +1,5 @@
 ### Get 获取列表
-GET http://localhost:5000/user HTTP/1.1
+GET http://localhost:5000/user?pageIndex=1&pageSize=20&searchKey=17 HTTP/1.1
 # Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1lIjoi5rWL6K-V55So5oi3IiwiaHR0cDovL3NjaGVtYXMubWljcm9zb2Z0LmNvbS93cy8yMDA4LzA2L2lkZW50aXR5L2NsYWltcy9yb2xlIjoiYWRtaW4iLCJleHAiOjE2MjU1NzExOTYsImlzcyI6IkJydXNlTGVlIn0.W4DD5VlraMg9fdDGiyWiAcENipsK8xwqyGgB6AmYMGY
 
 ### Get 获取审计日志列表
@@ -9,12 +9,21 @@ GET http://localhost:5000/audit HTTP/1.1
 GET http://localhost:5000/user/50 HTTP/1.1
 
 ### Put 修改
-PUT http://localhost:5000/user/7 HTTP/1.1
+PUT http://localhost:5000/user/58 HTTP/1.1
 Content-Type: application/json
 
 {
-    "Username":"BigMan",
-    "Password":"112358"
+    "Username":"Admin",
+    "Password":"123"
+}
+
+### Put 修改密码
+PUT  http://localhost:5000/user/changePwd HTTP/1.1
+Content-Type: application/json
+
+{
+    "OldPassword":"qq112358",
+    "NewPassword":"123456"
 }
 
 ### Post 新增

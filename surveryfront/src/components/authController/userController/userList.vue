@@ -4,14 +4,12 @@
       <el-form :inline="true" :model="formInline" class="demo-form-inline">
         <el-input
           v-model="searchText"
-          placeholder="Search..."
-          class="search"
-          @keypress.enter="onSearch"
+          placeholder="根据用户名查询..."
         ></el-input>
         &nbsp;
         <el-button
           type="primary"
-          v-model="onSearch"
+          @click="onSearch"
           class="el-icon-search"
         ></el-button>
         &nbsp;
@@ -133,9 +131,10 @@ export default {
       //默认为false，Dialog不显示
       addUserVisible: false,
       pager: {
+        // searchText: this.searchText,
         pageIndex: 1,
-        pageSize: 20,
-        rowsTotal: this.tableData,
+        pageSize: 10,
+        rowsTotal: 0,
       },
       formInline: {
         user: "",
@@ -194,24 +193,24 @@ export default {
     },
     // 改变页码后，重新拉取数据
     handlePageIndexChange(val) {
+      console.log(val);
       this.pager.pageIndex = val;
+      // this.listQuery.pageSize = val;
       this.fetchData(this.pager);
       // console.log(val);
     },
     // 改变页大小后，重新拉取数据
     handlePageSizeChange(val) {
-      this.pager.pageSize = val;
-      this.fetchData(this.pager);
       console.log(val);
+      this.pager.pageSize = val;
+      // this.listQuery.pageSize = val;
+      this.fetchData(this.pager);
     },
     // 拉取数据方法
     fetchData(pager) {
-      if (!pager) {
-        pager.index = 1;
-        this.currentIndex = 1;
-      }
       GetList(pager)
         .then(({ data }) => {
+          console.log(data);
           let res = data.data;
           this.tableData = res.data;
           this.pager = res.pager;
@@ -233,16 +232,17 @@ export default {
       this.dialogFormVisible = false;
     },
     handleSave() {
-      this.dialogFormVisible = false;
       changeInfo(this.formData.id, this.formData).then(({ data }) => {
         // console.log(data);
         if (data.code === 104) {
+          console.log(data);
           this.$confirm("用户名已存在!", "提示", {
             confirmButtonText: "确定",
             cancelButtonText: "取消",
             type: "warning",
           });
         } else {
+          this.dialogFormVisible = false;
           this.$message({
             message: "修改成功!",
             type: "success",
@@ -271,90 +271,30 @@ export default {
       }
       // console.log(id);
     },
-    // onSearch: function () {
-    //   let search = this.searchText;
-    //   let olddatas = this.tableData;
-    //   if (search == "") {
-    //     olddatas;
-    //   } else {
-    //     this.tableData = this.tableData.filter((item) => {
-    //       console.log("过滤", item);
-    //       let searchField = {
-    //         username: item.username,
-    //       };
-    //       return Object.keys(searchField).some(function (key) {
-    //         console.log("key值", key);
-    //         return String(item[key]).toLowerCase().indexOf(search) > -1;
-    //       });
-    //     });
-    //   }
-    //   return olddatas;
-    // },
-
-    // onSearch: function () {
-    //   var arr = this.tableData,
-    //     searchText = this.searchList;
-
-    //   // console.log(arr);
-    //   // console.log(searchText);
-    //   if (!searchText) {
-    //     return arr;
-    //   }
-    //   // searchText = searchText.trim();
-    //   arr = arr.filter(
-    //     (item) =>
-    //       // var result = item.username;
-    //       // 模糊查询
-    //       item.username.indexOf(searchText) !== -1
-    //     // 精确查询
-    //     // return result.match(searchText);
-    //   );
-    //   console.log(arr);
-    //   return arr;
-    //   // this.tableData = arr;
-    // },
-  },
-  computed: {
-    // 搜索框
     onSearch() {
-      var arr = this.tableData,
-        searchText = this.searchText;
+      // this.listQuery.pageIndex = 1;
+      this.pager.pageIndex = 1;
+      this.fetchData(this.pager);
+      // var arr = this.tableData,
+      //   searchText = this.searchText;
+      // // console.log(arr);
+      // // console.log(searchText);
+      // if (!searchText) {
+      //   return arr;
+      // }
+      // searchText = searchText.trim();
+      // arr = arr.filter(
+      //   (item) =>
+      //     // 模糊查询
+      //     item.username.indexOf(this.searchText) !== -1
+      // );
       // console.log(arr);
-      // console.log(searchText);
-      if (!searchText) {
-        return arr;
-      }
-      searchText = searchText.trim();
-      arr = arr.filter(
-        (item) =>
-          // 模糊查询
-          item.username.indexOf(this.searchText) !== -1
-      );
-      console.log(arr);
-      return arr;
+      // this.tableData = this.arr
     },
-    // onSearch: function () {
-    //   let search = this.searchText;
-    //   let olddatas = this.tableData;
-    //   if (search == "") {
-    //     this.tableData = olddatas;
-    //   } else {
-    //     this.tableData = this.tableData.filter((item) => {
-    //       console.log("过滤", item);
-    //       let searchField = {
-    //         username: item.username,
-    //       };
-    //       return Object.keys(searchField).some(function (key) {
-    //         console.log("key值", key);
-    //         return String(item[key]).toLowerCase().indexOf(search) > -1;
-    //       });
-    //     });
-    //   }
-    //   return this.tableData;
-    // },
   },
+
   created() {
-    this.tableData = this.arr;
+    // this.tableData = this.arr;
   },
   mounted() {
     NProgress.start();

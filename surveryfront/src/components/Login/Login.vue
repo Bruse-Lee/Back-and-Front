@@ -40,6 +40,7 @@
 <script>
 import Cookies from 'js-cookie'
 import request from "../../utils/request";
+import { setToken } from '../../utils/auth'
 export default {
   name: "Login",
   data() {
@@ -71,7 +72,7 @@ export default {
       };
       // 设置响应拦截器
       request.interceptors.response.use((response) => {
-        response.headers.authorization = window.localStorage.getItem("token");
+        response.headers = window.localStorage.getItem("token");
         // 拦截器已经拦截获取了响应数据里后端返回的对象
         let result = response.data;
         // console.log(result);
@@ -81,6 +82,7 @@ export default {
           console.log(err);
         };
         Cookies.set('username',this.loginForm.username)
+        Cookies.set('password',this.loginForm.password)
       request.post("/api/login", data).then((res) => {
         //所以此处打印的是用户状态信息
         // console.log(res.data); 
@@ -90,8 +92,7 @@ export default {
             message: "登陆成功!",
             type: "success",
           });
-          localStorage.setItem("token", res.data.token);
-          localStorage.setItem("refreshToken",res.data.refreshToken);
+          setToken()
           this.$router.push("/");
         } else {
           this.$message.error("用户名或密码错误,请重新尝试！");

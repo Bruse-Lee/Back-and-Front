@@ -3,6 +3,7 @@ import VueRouter from 'vue-router'
 import routes from './routes'
 import NProgress from 'nprogress'
 import 'nprogress/nprogress.css'
+import { isLogin } from '../utils/auth'
 
 Vue.use(VueRouter)
 
@@ -17,14 +18,24 @@ VueRouter.prototype.push = function push(location, onResolve, onReject) {
     return originalPush.call(this, location).catch(err => err)
 }
 router.beforeEach((to, from, next) => {
-    if (!localStorage.getItem("token")) {
-        if (to.path !== '/login') {
-            return next('/login')
+    let isAuth = isLogin()
+
+    if (to.path === '/login') {
+        if (isAuth) {
+            next('/')
+        } else {
+            next()
+        }
+    }else{
+        if(isAuth){
+            next()
+        }else{
+            next('/login')
         }
     }
     NProgress.start();
     console.log("全局前置守卫");
-    next()
+    // next()
 })
 
 router.afterEach(() => {

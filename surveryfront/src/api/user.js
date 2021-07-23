@@ -16,13 +16,17 @@ export function GetById(id) {
 }
 
 // 修改个人信息
-export function changeInfo(id,params) {
-    return request.put(`/user/${id}`,params)
+export function changeInfo(id, params) {
+    return request.put(`/user/${id}`, params)
 }
 
 // 新增用户
 export function newUser(data) {
     return request.post("/user/register", data)
+}
+
+export function changePassword(params) {
+    return request.put(`/user/`,params)
 }
 
 // 注销

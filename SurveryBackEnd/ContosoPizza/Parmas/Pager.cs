@@ -2,6 +2,8 @@ namespace ContosoPizza.Parmas
 {
     public class Pager
     {
+        // 搜索内容
+        public string searchText { get; set; }
         // 页码（当前第几页）
         public int PageIndex { get; set; }
 
