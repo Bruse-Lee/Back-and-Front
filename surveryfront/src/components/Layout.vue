@@ -69,13 +69,17 @@ export default {
 
         if (obj.children && obj.children.length > 0) {
           obj.children = this.resolve(obj.children, obj.path);
-          // } else if (obj.meta.hidden) {
-          //   obj.children.forEach((item) => {
-          //     let temple = Object.assign({}, item);
-          //     newArr.push(temple);
-          //   });
         }
-        newArr.push(obj);
+        if (obj.meta.hidden) {
+          if (obj.children && obj.children.length > 0) {
+            obj.children.forEach((item) => {
+              let temple = Object.assign({}, item);
+              newArr.push(temple);
+            });
+          }
+        } else {
+          newArr.push(obj);
+        }
       });
       return newArr;
     },

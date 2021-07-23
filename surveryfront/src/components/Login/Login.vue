@@ -74,7 +74,7 @@ export default {
         Cookies.set('password',this.loginForm.password)
       comeLogin(data).then((res) => {
         //所以此处打印的是用户状态信息
-        console.log(res);
+        // console.log(res);
         if (res.code === 200) {
           this.$message({
             message: "登陆成功!",

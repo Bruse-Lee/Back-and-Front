@@ -118,7 +118,7 @@ export default {
     // 拉取数据方法
     // fetchData(pager) {
     //   getAudit(pager)
-    //     .then(({ data }) => {
+    //     .then((data) => {
     //       let res = data.data;
     //       console.log(res);
     //       this.tableData = res.data;

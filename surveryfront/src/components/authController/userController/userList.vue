@@ -88,8 +88,8 @@
       <el-pagination
         @size-change="handlePageSizeChange"
         @current-change="handlePageIndexChange"
-        :current-page="pager.pageSize"
-        :page-size="pager.pageIndex"
+        :current-page="currentIndex"
+        :page-size="pager.pageSize"
         layout=" total,sizes, prev, pager, next, jumper"
         :total="pager.rowsTotal"
       >
@@ -125,7 +125,7 @@ const state = Vue.observable(NProgress);
 export default {
   data() {
     return {
-      tableData: null,
+      tableData: [],
       searchList: [],
       searchText: "",
       //默认为false，Dialog不显示
@@ -273,26 +273,13 @@ export default {
       // console.log(id);
     },
     onSearch() {
-      // this.listQuery.pageIndex = 1;
-      this.pager.pageIndex = 1;
-      this.fetchData(this.pager);
-      // var arr = this.tableData,
-      //   searchText = this.searchText;
-      // // console.log(arr);
-      // // console.log(searchText);
-      // if (!searchText) {
-      //   return arr;
-      // }
-      // searchText = searchText.trim();
-      // arr = arr.filter(
-      //   (item) =>
-      //     // 模糊查询
-      //     item.username.indexOf(this.searchText) !== -1
-      // );
-      // console.log(arr);
-      // this.tableData = this.arr
+      const input = this.searchText;
+      console.log(input);
+
+      return this.tableData;
     },
   },
+  computed: {},
 
   created() {
     // this.tableData = this.arr;

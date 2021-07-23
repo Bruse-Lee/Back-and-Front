@@ -13,9 +13,10 @@ let router = new VueRouter({
     routes
 })
 const originalPush = VueRouter.prototype.push
-VueRouter.prototype.push = function push(location, onResolve, onReject) {
-    if (onResolve || onReject) return originalPush.call(this, location, onResolve, onReject)
+VueRouter.prototype.push = function push(location) {
+
     return originalPush.call(this, location).catch(err => err)
+
 }
 router.beforeEach((to, from, next) => {
     let isAuth = isLogin()
@@ -26,16 +27,16 @@ router.beforeEach((to, from, next) => {
         } else {
             next()
         }
-    }else{
-        if(isAuth){
+    } else {
+        if (isAuth) {
             next()
-        }else{
+        } else {
             next('/login')
         }
     }
     NProgress.start();
     console.log("全局前置守卫");
-    // next()
+    next()
 })
 
 router.afterEach(() => {
