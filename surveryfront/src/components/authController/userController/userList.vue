@@ -4,6 +4,7 @@
       <el-form :inline="true" :model="formInline" class="demo-form-inline">
         <el-input
           v-model="searchText"
+          class="search"
           placeholder="根据用户名查询..."
         ></el-input>
         &nbsp;
@@ -210,7 +211,7 @@ export default {
     fetchData(pager) {
       GetList(pager)
         .then((data) => {
-          console.log(data);
+          // console.log(data);
           let res = data.data;
           this.tableData = res.data;
           this.pager = res.pager;
@@ -289,8 +290,7 @@ export default {
     setTimeout(() => {
       this.fetchData(this.pager);
       NProgress.done();
-    }, 2000);
-    // this.tableData = this.arr;
+    },);
   },
 };
 </script>

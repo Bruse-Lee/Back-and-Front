@@ -14,11 +14,12 @@
     "element-ui": "^2.15.3",
     "gsap": "^3.7.1",
     "jquery": "^3.6.0",
+    "js-cookie": "latest",
     "nprogress": "^0.2.0",
     "qs": "^6.10.1",
     "vue": "^2.6.11",
-    "vue-router": "^3.5.2",
-    "js-cookie":"latest"
+    "vue-quill-editor": "^3.0.6",
+    "vue-router": "^3.5.2"
   },
   "devDependencies": {
     "@vue/cli-plugin-babel": "~4.5.0",

@@ -44,31 +44,47 @@
       center
     >
       <span slot="footer" class="dialog-footer">
-        <el-form
+        <!-- <el-form
           :model="dataForm"
           label-width="80px"
           :rules="dataFormRules"
           ref="dataForm"
           :size="size"
           label-position="right"
+        > -->
+        <el-form
+          class="user-change-key"
+          ref="form"
+          :model="form"
+          :rules="rules"
+          label-width="100px"
         >
           <el-form-item label="旧密码" prop="oldpassword">
             <el-input
-              v-model="dataForm.oldpassword"
+              v-model="form.oldpassword"
               type="password"
               auto-complete="off"
             ></el-input>
           </el-form-item>
           <el-form-item label="新密码" prop="newpassword">
             <el-input
-              v-model="dataForm.newpassword"
+              v-model="form.newpassword"
               type="password"
               auto-complete="off"
             ></el-input>
           </el-form-item>
+          <el-form-item label="确认密码" prop="comfirmpassword">
+            <el-input
+              v-model="form.comfirmpassword"
+              type="password"
+              auto-complete="off"
+            ></el-input>
+          </el-form-item>
+          <el-button @click="handleCancel">取 消</el-button>
+          <el-button type="primary" @click="handleChange('form')"
+            >修改</el-button
+          >
         </el-form>
-        <el-button @click="handleCancel">取 消</el-button>
-        <el-button type="primary" @click="handleChange">修改</el-button>
       </span>
     </el-dialog>
     <!-- 修改密码结束 -->
@@ -79,7 +95,7 @@
 <script>
 import { changePassword } from "../../api/user";
 import Cookies from "js-cookie";
-import { removeToken } from '../../utils/auth'
+import { removeToken } from "../../utils/auth";
 export default {
   data() {
     return {
@@ -87,17 +103,21 @@ export default {
       centerDialogVisible: false,
       changeDialogVisible: false,
       size: "small",
-      dataForm: {
+      form: {
         oldpassword: "",
         newpassword: "",
+        comfirmpassword: "",
       },
-      //设置属性
-      dataFormRules: {
+      //设置规则
+      rules: {
         oldpassword: [
           { required: true, message: "请输入旧密码", trigger: "blur" },
         ],
         newpassword: [
           { required: true, message: "请输入新密码", trigger: "blur" },
+        ],
+        comfirmpassword: [
+          { required: true, message: "请确认密码", trigger: "blur" },
         ],
       },
     };
@@ -119,36 +139,51 @@ export default {
       }
     },
     handleConfirm() {
-      removeToken()
+      removeToken();
       this.$router.push("/Login");
     },
-    handleChange() {
-      // let nowPassword = Cookies.get('password');
-      // console.log(nowPassword);
-      // if (
-      //   this.dataForm.oldpassword != nowPassword ||
-      //   this.dataForm.newpassword > 0
-      // ) {
-      //   this.$message.error("原密码不一致,请确认后重试");
-      // } else {
-
-        this.$refs.dataForm.validate((valid) => {
-          if (valid) {
+    handleChange(formName) {
+      console.log(formName);
+      console.log(this.form);
+      // let u = Cookies.get("username");
+      
+      // this.username = u;
+      // this.form.id = id;
+      this.$refs[formName].validate((valid) => {
+        if (valid) {
+          if (this.form.oldpassword === this.form.newpassword) {
+            
+            this.$message.error("原密码不能与新密码相同");
+          }
+          if (this.form.newpassword != this.form.comfirmpassword) {
+            this.$message.error("确认密码与新密码不一致");
+          } 
+          else{
             this.$confirm("确认修改吗?", "提示", {}).then(() => {
               let params = {
-                
-                newpassword:this.dataForm.newpassword,
-                currentPassword:this.dataForm.oldpassword
+                // Id: this.form.id,
+                OldPassword: this.form.oldpassword,
+                NewPassword: this.form.newpassword,
+                ComfirmPassword: this.form.comfirmpassword,
               };
-              // let id = params.id;
-              console.log(params);
-              
+
               changePassword(params).then((res) => {
                 console.log(res);
+                if (res.code === 200) {
+                  this.changeDialogVisible = false;
+                  removeToken();
+                  this.$router.push("/login");
+                  this.$message.success("修改成功,请重新登录!");
+                } else if (res.code === 1000) {
+                  this.$message.error("原密码错误,请确认后重试");
+                } else {
+                  this.$message.error("网络错误!");
+                }
               });
             });
           }
-        });
+        }
+      });
       // }
     },
     handleCancel() {
@@ -158,7 +193,6 @@ export default {
   },
   computed: {
     showUsername() {
-
       return Cookies.get("username");
     },
   },

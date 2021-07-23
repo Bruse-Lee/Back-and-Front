@@ -30,7 +30,7 @@ export function newUser(data) {
 }
 
 export function changePassword(params) {
-    return request.put(`/user/`,params)
+    return request.put('/user/changePwd',params)
 }
 
 // 注销
