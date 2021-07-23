@@ -170,16 +170,16 @@ export default {
       let result = JSON.parse(JSON.stringify(db));
       newUser(result).then((res) => {
         //所以此处打印的是用户状态信息
-        console.log(res.data);
+        console.log(res);
         console.log(result);
-        if (res.data.code === 200) {
+        if (res.code === 200) {
           this.$message({
             message: "创建成功!",
             type: "success",
           });
           this.addUserVisible = false;
           // this.reload();
-        } else if (res.data.code === 1000) {
+        } else if (res.code === 1000) {
           // alert("请输入正确的用户名或密码!");
           this.$confirm("请输入正确的用户名或密码!", "提示", {
             confirmButtonText: "确定",
@@ -209,7 +209,7 @@ export default {
     // 拉取数据方法
     fetchData(pager) {
       GetList(pager)
-        .then(({ data }) => {
+        .then((data) => {
           console.log(data);
           let res = data.data;
           this.tableData = res.data;
@@ -231,6 +231,7 @@ export default {
     handleCancel() {
       this.dialogFormVisible = false;
     },
+    // Edit
     handleSave() {
       changeInfo(this.formData.id, this.formData).then(({ data }) => {
         // console.log(data);
@@ -247,7 +248,7 @@ export default {
             message: "修改成功!",
             type: "success",
           });
-          this.tableData.splice(this.currentIndex, 1, data.data);
+          this.tableData.splice(this.currentIndex, 1, data);
         }
       });
     },

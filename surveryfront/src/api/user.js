@@ -1,5 +1,9 @@
 import request from '../utils/request'
 
+export function comeLogin(data){
+    return request.post('api/login',data)
+}
+
 // 删除
 export function deleteById(id) {
     return request.delete(`/user/${id}`)

@@ -39,7 +39,7 @@
 
 <script>
 import Cookies from 'js-cookie'
-import request from "../../utils/request";
+import {comeLogin} from '../../api/user'
 import { setToken } from '../../utils/auth'
 export default {
   name: "Login",
@@ -70,22 +70,10 @@ export default {
         username: this.loginForm.username,
         password: this.loginForm.password,
       };
-      // 设置响应拦截器
-      request.interceptors.response.use((response) => {
-        response.headers = window.localStorage.getItem("token");
-        // 拦截器已经拦截获取了响应数据里后端返回的对象
-        let result = response.data;
-        // console.log(result);
-        return result;
-      }),
-        (err) => {
-          console.log(err);
-        };
         Cookies.set('username',this.loginForm.username)
         Cookies.set('password',this.loginForm.password)
-      request.post("/api/login", data).then((res) => {
+      comeLogin(data).then((res) => {
         //所以此处打印的是用户状态信息
-        // console.log(res.data); 
         console.log(res);
         if (res.code === 200) {
           this.$message({
